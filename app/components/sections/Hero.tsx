@@ -1,7 +1,8 @@
 "use client"
 
 import React from 'react'
-import { ArrowDown, Download, Sparkles, Satellite, Brain } from 'lucide-react'
+import Link from 'next/link'
+import { ArrowDown, Eye, Sparkles, Satellite, Brain, GraduationCap } from 'lucide-react'
 import styles from '../../styles/components/Hero.module.css'
 
 const Hero = () => {
@@ -53,13 +54,21 @@ const Hero = () => {
             <ArrowDown size={18} />
           </button>
           <a
-            href="/rohit-khati-resume.pdf"
-            download="Rohit_Khati_Resume.pdf"
+            href="/resume.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
             className={styles.secondaryButton}
           >
-            <Download size={18} />
-            <span>Download Resume</span>
+            <Eye size={18} />
+            <span>View Resume</span>
           </a>
+          <Link
+            href="/academic"
+            className={styles.secondaryButton}
+          >
+            <GraduationCap size={18} />
+            <span>Academic Background</span>
+          </Link>
         </div>
 
         {/* Stats Section */}

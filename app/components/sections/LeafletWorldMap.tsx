@@ -286,27 +286,7 @@ const WorldMapJourney = () => {
 
   // Create man icon for final destination
   const getManIcon = () => {
-    return `<div style="
-      width: 60px; 
-      height: 60px; 
-      display: flex; 
-      align-items: center; 
-      justify-content: center; 
-      position: relative;
-      pointer-events: none;
-      background: rgba(255, 255, 255, 0.9);
-      border-radius: 50%;
-      border: 3px solid #2e7d32;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-    ">
-      <svg viewBox="0 0 24 24" style="
-        width: 40px; 
-        height: 40px; 
-        color: #2e7d32;
-      ">
-        <path fill="currentColor" d="M12,2A3,3 0 0,1 15,5A3,3 0 0,1 12,8A3,3 0 0,1 9,5A3,3 0 0,1 12,2M21,9V7H15L13.5,7.5C13.1,7.4 12.6,7.5 12.1,7.7L6,10V12H7.5V22H9V15H11V22H12.5V12H14V22H15.5V12H17V22H18.5V10L21,9Z"/>
-      </svg>
-    </div>`
+    return `<div style="font-size: 40px; line-height: 1;">🧍‍♂️</div>`
   }
 
   // Color mapping for categories

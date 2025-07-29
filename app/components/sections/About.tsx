@@ -1,6 +1,7 @@
 "use client"
 
 import React from 'react'
+import Link from 'next/link'
 import { CheckCircle, Award, Calendar, MapPin } from 'lucide-react'
 import WorldMapJourney from './LeafletWorldMap'
 import styles from '../../styles/components/About.module.css'
