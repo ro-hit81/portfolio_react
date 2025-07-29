@@ -1,7 +1,11 @@
 "use client"
 
 import React, { useState, useEffect } from 'react'
-import { Code, Database, Brain, Globe, Award, Settings } from 'lucide-react'
+import { 
+  Code2, Database, Brain, Globe2, Award, Settings,
+  FileCode, BarChart3, CloudCog, Layers, Map, 
+  Satellite, Monitor, GitBranch, Container, Cpu, Zap
+} from 'lucide-react'
 import styles from '../../styles/components/Skills.module.css'
 
 const Skills = () => {
@@ -28,42 +32,46 @@ const Skills = () => {
   const skillCategories = [
     {
       title: "Programming Languages",
-      icon: Code,
+      icon: Code2,
+      colorClass: "programming",
       skills: [
-        { name: "Python", level: 95 },
-        { name: "JavaScript", level: 85 },
-        { name: "R", level: 80 },
-        { name: "SQL", level: 88 }
+        { name: "Python", level: 95, icon: FileCode },
+        { name: "JavaScript", level: 85, icon: Code2 },
+        { name: "R", level: 80, icon: BarChart3 },
+        { name: "SQL", level: 88, icon: Database }
       ]
     },
     {
       title: "AI & Machine Learning",
       icon: Brain,
+      colorClass: "ai",
       skills: [
-        { name: "TensorFlow", level: 90 },
-        { name: "PyTorch", level: 85 },
-        { name: "Scikit-learn", level: 92 },
-        { name: "OpenCV", level: 88 }
+        { name: "TensorFlow", level: 90, icon: Cpu },
+        { name: "PyTorch", level: 85, icon: Zap },
+        { name: "Scikit-learn", level: 92, icon: BarChart3 },
+        { name: "OpenCV", level: 88, icon: Monitor }
       ]
     },
     {
       title: "Earth Observation",
-      icon: Globe,
+      icon: Globe2,
+      colorClass: "earth",
       skills: [
-        { name: "Google Earth Engine", level: 95 },
-        { name: "QGIS", level: 90 },
-        { name: "ENVI", level: 85 },
-        { name: "ArcGIS", level: 80 }
+        { name: "Google Earth Engine", level: 95, icon: Satellite },
+        { name: "QGIS", level: 90, icon: Map },
+        { name: "ENVI", level: 85, icon: Layers },
+        { name: "ArcGIS", level: 80, icon: Globe2 }
       ]
     },
     {
       title: "Data & Cloud",
       icon: Database,
+      colorClass: "data",
       skills: [
-        { name: "AWS", level: 85 },
-        { name: "Docker", level: 80 },
-        { name: "Jupyter", level: 95 },
-        { name: "Git", level: 90 }
+        { name: "AWS", level: 85, icon: CloudCog },
+        { name: "Docker", level: 80, icon: Container },
+        { name: "Jupyter", level: 95, icon: FileCode },
+        { name: "Git", level: 90, icon: GitBranch }
       ]
     }
   ]
@@ -90,12 +98,12 @@ const Skills = () => {
   ]
 
   const tools = [
-    { name: "Jupyter", icon: Settings },
-    { name: "VSCode", icon: Settings },
-    { name: "Docker", icon: Settings },
-    { name: "Git", icon: Settings },
-    { name: "Tableau", icon: Settings },
-    { name: "Power BI", icon: Settings }
+    { name: "Jupyter", icon: FileCode, colorClass: "orange" },
+    { name: "VSCode", icon: Code2, colorClass: "blue" },
+    { name: "Docker", icon: Container, colorClass: "blueDeep" },
+    { name: "Git", icon: GitBranch, colorClass: "red" },
+    { name: "Tableau", icon: BarChart3, colorClass: "blueLight" },
+    { name: "Power BI", icon: BarChart3, colorClass: "yellow" }
   ]
 
   return (
@@ -112,29 +120,35 @@ const Skills = () => {
             return (
               <div key={categoryIndex} className={styles.skillCategory}>
                 <div className={styles.categoryHeader}>
-                  <div className={styles.categoryIcon}>
+                  <div className={`${styles.categoryIcon} ${styles[category.colorClass]}`}>
                     <IconComponent size={24} />
                   </div>
                   <h3 className={styles.categoryTitle}>{category.title}</h3>
                 </div>
                 
                 <div className={styles.skillsList}>
-                  {category.skills.map((skill, skillIndex) => (
-                    <div key={skillIndex} className={styles.skillItem}>
-                      <div className={styles.skillHeader}>
-                        <span className={styles.skillName}>{skill.name}</span>
-                        <span className={styles.skillLevel}>{skill.level}%</span>
+                  {category.skills.map((skill, skillIndex) => {
+                    const SkillIcon = skill.icon
+                    return (
+                      <div key={skillIndex} className={styles.skillItem}>
+                        <div className={styles.skillHeader}>
+                          <div className={styles.skillNameWithIcon}>
+                            <SkillIcon size={16} className={styles.skillIcon} />
+                            <span className={styles.skillName}>{skill.name}</span>
+                          </div>
+                          <span className={styles.skillLevel}>{skill.level}%</span>
+                        </div>
+                        <div className={styles.progressBar}>
+                          <div 
+                            className={`${styles.progressFill} ${styles[category.colorClass]}`}
+                            style={{ 
+                              width: isVisible ? `${skill.level}%` : '0%'
+                            }}
+                          />
+                        </div>
                       </div>
-                      <div className={styles.progressBar}>
-                        <div 
-                          className={styles.progressFill}
-                          style={{ 
-                            width: isVisible ? `${skill.level}%` : '0%'
-                          }}
-                        />
-                      </div>
-                    </div>
-                  ))}
+                    )
+                  })}
                 </div>
               </div>
             )
@@ -173,7 +187,7 @@ const Skills = () => {
               const IconComponent = tool.icon
               return (
                 <div key={index} className={styles.toolCard}>
-                  <IconComponent className={styles.toolIcon} size={32} />
+                  <IconComponent className={`${styles.toolIcon} ${styles[tool.colorClass]}`} size={32} />
                   <span className={styles.toolName}>{tool.name}</span>
                 </div>
               )

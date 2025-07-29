@@ -55,13 +55,29 @@
 .categoryIcon {
   width: 48px;
   height: 48px;
-  background: linear-gradient(135deg, #3b82f6, #8b5cf6);
   border-radius: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
   color: white;
   box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+}
+
+/* Category-specific gradient backgrounds */
+.categoryIcon.programming {
+  background: linear-gradient(135deg, #3b82f6, #06b6d4);
+}
+
+.categoryIcon.ai {
+  background: linear-gradient(135deg, #8b5cf6, #ec4899);
+}
+
+.categoryIcon.earth {
+  background: linear-gradient(135deg, #10b981, #059669);
+}
+
+.categoryIcon.data {
+  background: linear-gradient(135deg, #f97316, #dc2626);
 }
 
 .categoryTitle {
@@ -89,6 +105,17 @@
   align-items: center;
 }
 
+.skillNameWithIcon {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.skillIcon {
+  color: #6b7280;
+  flex-shrink: 0;
+}
+
 .skillName {
   font-weight: 600;
   color: #374151;
@@ -112,10 +139,26 @@
 
 .progressFill {
   height: 100%;
-  background: linear-gradient(135deg, #3b82f6, #8b5cf6);
   border-radius: 4px;
   transition: width 1.5s ease-in-out;
   position: relative;
+}
+
+/* Progress bar gradients for each category */
+.progressFill.programming {
+  background: linear-gradient(135deg, #3b82f6, #06b6d4);
+}
+
+.progressFill.ai {
+  background: linear-gradient(135deg, #8b5cf6, #ec4899);
+}
+
+.progressFill.earth {
+  background: linear-gradient(135deg, #10b981, #059669);
+}
+
+.progressFill.data {
+  background: linear-gradient(135deg, #f97316, #dc2626);
 }
 
 .progressFill::after {
@@ -260,6 +303,31 @@
   margin: 0 auto 0.75rem;
   color: #6b7280;
   transition: color 0.3s ease;
+}
+
+/* Tool-specific colors */
+.toolIcon.orange {
+  color: #f97316;
+}
+
+.toolIcon.blue {
+  color: #3b82f6;
+}
+
+.toolIcon.blueDeep {
+  color: #2563eb;
+}
+
+.toolIcon.red {
+  color: #dc2626;
+}
+
+.toolIcon.blueLight {
+  color: #60a5fa;
+}
+
+.toolIcon.yellow {
+  color: #eab308;
 }
 
 .toolCard:hover .toolIcon {
