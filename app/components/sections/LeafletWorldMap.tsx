@@ -732,7 +732,7 @@ const WorldMapJourney = () => {
       <div className={styles.header}>
         <h2 className={styles.title}>My International Journey</h2>
         <p className={styles.subtitle}>
-          Follow my educational and professional path across Nepal, Thailand, Japan, Europe, and Brazil
+          Follow my educational and professional path across the globe, from Nepal to Europe and beyond.
         </p>
       </div>
 

@@ -2,14 +2,14 @@
 
 import React from 'react'
 import Link from 'next/link'
-import { ArrowDown, Eye, Sparkles, Satellite, Brain, GraduationCap } from 'lucide-react'
+import { ArrowDown, Eye, Sparkles, Satellite, Brain, GraduationCap, Trophy } from 'lucide-react'
 import styles from '../../styles/components/Hero.module.css'
 
 const Hero = () => {
   const stats = [
-    { value: '50+', label: 'Projects Completed', icon: Sparkles },
+    { value: '20+', label: 'Projects Completed', icon: Sparkles },
     { value: '5+', label: 'Years Experience', icon: Brain },
-    { value: '15+', label: 'Awards Won', icon: Satellite },
+    { value: '5', label: 'Awards Won', icon: Trophy },
   ]
 
   const scrollToSection = (href: string) => {

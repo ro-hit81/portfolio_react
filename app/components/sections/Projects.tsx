@@ -8,27 +8,27 @@ const Projects = () => {
   const projects = [
     {
       title: "Automatic Satellite Image Downloader",
-      description: "Automated system for downloading and processing satellite imagery from various sources including Landsat, Sentinel, and MODIS. Features include batch processing, cloud filtering, and metadata extraction.",
+      description: "A powerful Python-based tool that simplifies the process of downloading Landsat satellite imagery using Google Earth Engine. This project eliminates the complexity of manually searching and downloading satellite products by providing an automated solution that requires only the satellite product ID.",
       image: Satellite,
-      tags: ["Python", "API", "Remote Sensing", "Automation"],
+      tags: ["Python", "Google Earth Engine", "Satellite Imagery", "Jupyter", "Geospatial"],
       github: "https://github.com/ro-hit81/Automatic-Satellite-Image-Downloader",
-      demo: null
+      demo: "https://colab.research.google.com/github/ro-hit81/Automatic-Satellite-Image-Downloader/blob/master/LandsatDownloader.ipynb"
     },
     {
       title: "Land Cover Classification using GEE",
-      description: "Machine learning-based land cover classification system using Google Earth Engine. Implements Random Forest and SVM algorithms for accurate terrain analysis.",
+      description: "Comprehensive cloud-based machine learning framework leveraging Google Earth Engine's planetary-scale computing platform to generate accurate land cover maps. Combines multi-temporal Landsat imagery with deep neural networks for automated land cover classification workflows.",
       image: Database,
-      tags: ["Google Earth Engine", "JavaScript", "Machine Learning", "Classification"],
+      tags: ["Machine Learning", "TensorFlow", "Google Earth Engine", "Remote Sensing", "Python"],
       github: "https://github.com/ro-hit81/Landcover_GEE",
-      demo: null
+      demo: "https://colab.research.google.com/github/ro-hit81/Landcover_GEE/blob/master/Landcover%20Map%20Generation.ipynb"
     },
     {
-      title: "AI-Powered Climate Monitoring",
-      description: "Deep learning system for analyzing climate patterns using satellite data. Features time-series analysis, anomaly detection, and predictive modeling for environmental changes.",
+      title: "U-Net Landsat 10-Class Classification",
+      description: "Advanced deep learning framework for semantic segmentation of satellite imagery using U-Net and Feature Pyramid Network architectures. Achieves high-accuracy pixel-level classification across 10 distinct land cover categories including detailed urban subcategories.",
       image: Brain,
-      tags: ["TensorFlow", "Time Series", "Climate Science", "Deep Learning"],
-      github: null,
-      demo: "https://climate-monitor-demo.com"
+      tags: ["Deep Learning", "U-Net", "TensorFlow", "Landsat", "Segmentation"],
+      github: "https://github.com/ro-hit81/unet_landsat_10_class",
+      demo: null
     }
   ]
 

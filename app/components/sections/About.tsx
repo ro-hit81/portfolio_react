@@ -10,8 +10,8 @@ const About = () => {
   const highlights = [
     "Expert in satellite imagery analysis and remote sensing technologies",
     "5+ years of experience in AI/ML applications for environmental monitoring", 
-    "Published researcher in Earth Observation and Climate Science",
-    "Proficient in Python, TensorFlow, Google Earth Engine, and cloud platforms"
+    "Active researcher in Earth Observation and Climate Science",
+    "Proficient in Python, TensorFlow, PyTorch, Google Earth Engine, AWS EMR, and cloud platforms"
   ]
 
   const expertise = [
@@ -20,7 +20,9 @@ const About = () => {
     "Environmental Monitoring",
     "Remote Sensing Technologies",
     "Climate Data Analysis",
-    "Geospatial Analytics"
+    "Geospatial Analytics",
+    "High Performance Computing (HPC) & Multi-GPU Cluster Environments",
+    "Cloud Platforms (Google Earth Engine, AWS EMR)"
   ]
 
   const timeline = [
