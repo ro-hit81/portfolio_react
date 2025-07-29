@@ -302,13 +302,44 @@
 
 /* Responsive Design */
 @media (max-width: 768px) {
+  .mapContainer {
+    padding: 1rem;
+  }
+  
+  .title {
+    font-size: 2rem;
+  }
+  
+  .subtitle {
+    font-size: 1rem;
+  }
+  
+  /* Mobile Layout - Stack vertically with proper spacing */
   .mainLayout {
     grid-template-columns: 1fr;
-    gap: 1rem;
+    gap: 1.5rem;
+    height: auto;
   }
   
   .mapCard {
-    order: -1; /* Map card goes to top on mobile */
+    order: 1;
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    min-height: 350px;
+  }
+  
+  .traveledCard {
+    order: 2;
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    min-height: 250px;
+  }
+  
+  .currentCard {
+    order: 3;
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    min-height: 200px;
   }
   
   .mapCardContent .leafletMap {
@@ -316,12 +347,32 @@
   }
   
   .cardContent {
-    padding: 0.8rem;
-    min-height: 120px;
+    padding: 1rem;
+    min-height: auto;
   }
   
   .placesList {
-    max-height: 180px;
+    max-height: 200px;
+    overflow-y: auto;
+  }
+  
+  .eventPanel {
+    padding: 1.5rem;
+    width: 95vw;
+  }
+  
+  .mapWrapper {
+    gap: 1.5rem;
+  }
+  
+  .legend {
+    width: 100%;
+    max-width: 350px;
+  }
+  
+  .timelineProgress {
+    width: 100%;
+    padding: 1rem;
   }
 }
 
@@ -812,15 +863,59 @@
     width: 100%;
     padding: 1rem;
   }
+  
+  /* Ensure cards have proper mobile layout */
+  .cardHeader {
+    padding: 1rem 1.5rem;
+  }
+  
+  .cardTitle {
+    font-size: 1.1rem;
+  }
+  
+  .cardContent {
+    padding: 1.5rem;
+  }
 }
 
 @media (max-width: 480px) {
   .mapContainer {
-    padding: 0.5rem;
+    padding: 0.75rem;
   }
   
   .title {
     font-size: 1.8rem;
+  }
+  
+  .subtitle {
+    font-size: 0.95rem;
+  }
+  
+  /* Smaller screens - even more compact */
+  .mainLayout {
+    gap: 1rem;
+  }
+  
+  .mapCard,
+  .traveledCard,
+  .currentCard {
+    min-height: auto;
+  }
+  
+  .mapCardContent .leafletMap {
+    height: 250px !important;
+  }
+  
+  .cardContent {
+    padding: 1rem;
+  }
+  
+  .cardHeader {
+    padding: 0.875rem 1rem;
+  }
+  
+  .cardTitle {
+    font-size: 1rem;
   }
   
   .worldMap {
@@ -834,6 +929,10 @@
   
   .eventTitle {
     font-size: 1.1rem;
+  }
+  
+  .placesList {
+    max-height: 150px;
   }
 }
 
