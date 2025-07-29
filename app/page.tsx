@@ -1,4 +1,5 @@
 import Navigation from './components/layout/Navigation'
+import ScrollFadeOverlay from './components/effects/ScrollFadeOverlay'
 import Hero from './components/sections/Hero'
 import About from './components/sections/About'
 import Skills from './components/sections/Skills'
@@ -10,12 +11,26 @@ export default function Home() {
   return (
     <main className="min-h-screen">
       <Navigation />
-      <Hero />
-      <About />
-      <Skills />
-      <Projects />
-      <Awards />
-      <Contact />
+      <ScrollFadeOverlay />
+      
+      <section id="home">
+        <Hero />
+      </section>
+      <section id="about" className="section-fade-in">
+        <About />
+      </section>
+      <section id="skills" className="section-fade-in">
+        <Skills />
+      </section>
+      <section id="projects" className="section-fade-in">
+        <Projects />
+      </section>
+      <section id="awards" className="section-fade-in">
+        <Awards />
+      </section>
+      <section id="contact" className="section-fade-in">
+        <Contact />
+      </section>
     </main>
   )
 }

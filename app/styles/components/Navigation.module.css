@@ -111,6 +111,13 @@
   transform: translateY(-1px);
 }
 
+.navButton.active {
+  color: #3b82f6;
+  background: rgba(59, 130, 246, 0.1);
+  border-bottom: 2px solid #3b82f6;
+  font-weight: 600;
+}
+
 .socialLinks {
   display: none;
   align-items: center;
@@ -213,6 +220,13 @@
 .mobileNavButton:hover {
   color: #3b82f6;
   background: rgba(59, 130, 246, 0.1);
+}
+
+.mobileNavButton.active {
+  color: #3b82f6;
+  background: rgba(59, 130, 246, 0.15);
+  border-left: 3px solid #3b82f6;
+  font-weight: 600;
 }
 
 .mobileSocialLinks {

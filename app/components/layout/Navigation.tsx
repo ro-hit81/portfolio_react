@@ -2,25 +2,38 @@
 
 import React, { useState } from 'react'
 import { Menu, X, Github, Linkedin } from 'lucide-react'
+import { useAdvancedScroll } from '../../hooks/useAdvancedScroll'
 import styles from '../../styles/components/Navigation.module.css'
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false)
+  const { activeSection } = useAdvancedScroll()
 
   const navItems = [
-    { label: 'Home', href: '#home' },
-    { label: 'About', href: '#about' },
-    { label: 'Skills', href: '#skills' },
-    { label: 'Projects', href: '#projects' },
-    { label: 'Awards', href: '#awards' },
-    { label: 'Contact', href: '#contact' },
+    { label: 'Home', href: 'home' },
+    { label: 'About', href: 'about' },
+    { label: 'Skills', href: 'skills' },
+    { label: 'Projects', href: 'projects' },
+    { label: 'Awards', href: 'awards' },
+    { label: 'Contact', href: 'contact' },
   ]
 
-  const scrollToSection = (href: string) => {
-    const element = document.querySelector(href)
+  const scrollToSection = (sectionId: string) => {
+    console.log('Trying to scroll to section:', sectionId) // Debug log
+    const element = document.getElementById(sectionId)
+    console.log('Element found:', element) // Debug log
+    
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth' })
+      // Use the element's scrollIntoView method for more reliable scrolling
+      element.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start',
+        inline: 'nearest'
+      })
+    } else {
+      console.error('Section not found:', sectionId) // Debug log
     }
+    // Close mobile menu after clicking
     setIsOpen(false)
   }
 
@@ -48,7 +61,7 @@ const Navigation = () => {
               <button
                 key={item.label}
                 onClick={() => scrollToSection(item.href)}
-                className={styles.navButton}
+                className={`${styles.navButton} ${activeSection === item.href ? styles.active : ''}`}
               >
                 {item.label}
               </button>
@@ -93,7 +106,7 @@ const Navigation = () => {
             <button
               key={item.label}
               onClick={() => scrollToSection(item.href)}
-              className={styles.mobileNavButton}
+              className={`${styles.mobileNavButton} ${activeSection === item.href ? styles.active : ''}`}
             >
               {item.label}
             </button>

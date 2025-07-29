@@ -53,8 +53,8 @@ const Hero = () => {
             <ArrowDown size={18} />
           </button>
           <a
-            href="/resume.pdf"
-            download
+            href="/rohit-khati-resume.pdf"
+            download="Rohit_Khati_Resume.pdf"
             className={styles.secondaryButton}
           >
             <Download size={18} />

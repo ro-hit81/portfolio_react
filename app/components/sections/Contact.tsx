@@ -11,6 +11,9 @@ const Contact = () => {
     subject: '',
     message: ''
   })
+  
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target
@@ -22,27 +25,67 @@ const Contact = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    // Handle form submission here
-    console.log('Form submitted:', formData)
+    setIsSubmitting(true)
+    
+    try {
+      // Create mailto link with form data
+      const emailSubject = encodeURIComponent(formData.subject || 'Contact from Portfolio Website')
+      const emailBody = encodeURIComponent(
+        `Name: ${formData.name}\n` +
+        `Email: ${formData.email}\n\n` +
+        `Message:\n${formData.message}`
+      )
+      
+      const mailtoLink = `mailto:rhtkhati@gmail.com?subject=${emailSubject}&body=${emailBody}`
+      
+      // Open email client
+      window.location.href = mailtoLink
+      
+      // Reset form after submission
+      setFormData({
+        name: '',
+        email: '',
+        subject: '',
+        message: ''
+      })
+      
+      setSubmitStatus('success')
+      
+      // Reset status after 5 seconds
+      setTimeout(() => {
+        setSubmitStatus('idle')
+      }, 5000)
+      
+    } catch (error) {
+      console.error('Error opening email client:', error)
+      setSubmitStatus('error')
+      
+      // Reset status after 5 seconds
+      setTimeout(() => {
+        setSubmitStatus('idle')
+      }, 5000)
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   const contactInfo = [
     {
       icon: Mail,
       label: "Email",
-      value: "rohit.khati@example.com",
-      link: "mailto:rohit.khati@example.com"
+      value: "rhtkhati@gmail.com",
+      link: "mailto:rhtkhati@gmail.com"
     },
     {
       icon: Phone, 
       label: "Phone",
-      value: "+1 (555) 123-4567",
-      link: "tel:+15551234567"
+      value: "+33 (0) 780846313",
+      link: "tel:+33780846313"
     },
     {
       icon: MapPin,
       label: "Location", 
-      value: "San Francisco, CA",
+      value: "Vannes 56000, France",
       link: null
     }
   ]
@@ -55,17 +98,17 @@ const Contact = () => {
     },
     {
       icon: Linkedin,
-      href: "https://linkedin.com/in/rohitkhati", 
+      href: "https://www.linkedin.com/in/rhtkht/", 
       label: "LinkedIn"
     },
     {
       icon: Twitter,
-      href: "https://twitter.com/rohitkhati",
+      href: "https://x.com/rohitkhati713",
       label: "Twitter"
     },
     {
       icon: Mail,
-      href: "mailto:rohit.khati@example.com",
+      href: "mailto:rhtkhati@gmail.com",
       label: "Email"
     }
   ]
@@ -167,9 +210,26 @@ const Contact = () => {
               />
             </div>
 
-            <button type="submit" className={styles.submitButton}>
-              Send Message
+            <button 
+              type="submit" 
+              className={styles.submitButton}
+              disabled={isSubmitting}
+            >
+              {isSubmitting ? 'Opening Email Client...' : 'Send Message'}
             </button>
+            
+            {/* Status Messages */}
+            {submitStatus === 'success' && (
+              <div className={styles.successMessage}>
+                ✅ Your email client should open with the message pre-filled. Please send it from there!
+              </div>
+            )}
+            
+            {submitStatus === 'error' && (
+              <div className={styles.errorMessage}>
+                ❌ Unable to open email client. Please email me directly at rhtkhati@gmail.com
+              </div>
+            )}
           </form>
         </div>
 

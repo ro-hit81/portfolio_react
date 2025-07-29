@@ -2,6 +2,7 @@
 
 import React from 'react'
 import { CheckCircle, Award, Calendar, MapPin } from 'lucide-react'
+import WorldMapJourney from './LeafletWorldMap'
 import styles from '../../styles/components/About.module.css'
 
 const About = () => {
@@ -83,24 +84,8 @@ const About = () => {
           </div>
         </div>
 
-        {/* Professional Timeline */}
-        <div className={styles.timeline}>
-          <h3 className={styles.timelineTitle}>Professional Journey</h3>
-          <div className={styles.timelineContainer}>
-            {timeline.map((item, index) => (
-              <div key={index} className={styles.timelineItem}>
-                <div className={styles.timelineIcon}>
-                  <Calendar size={16} />
-                </div>
-                <div className={styles.timelineContent}>
-                  <div className={styles.timelineYear}>{item.year}</div>
-                  <h4 className={styles.timelineTitle}>{item.title}</h4>
-                  <p className={styles.timelineDescription}>{item.description}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
+        {/* Interactive World Map with Professional Journey */}
+        <WorldMapJourney />
       </div>
     </section>
   )
