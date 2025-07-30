@@ -17,12 +17,17 @@ interface JourneyEvent {
   size: number
 }
 
+// Define Leaflet types
+declare global {
+  interface Window {
+    L: any;
+  }
+}
+
 const WorldMapJourney = () => {
   const [selectedEvent, setSelectedEvent] = useState<JourneyEvent | null>(null)
   const [animationPhase, setAnimationPhase] = useState(0)
   const [leafletLoaded, setLeafletLoaded] = useState(false)
-  const [currentPathIndex, setCurrentPathIndex] = useState(0)
-  const [airplanePosition, setAirplanePosition] = useState({ x: 0, y: 0, angle: 0, visible: false })
   const mapRef = useRef<HTMLDivElement>(null)
   const mapInstanceRef = useRef<any>(null)
   const markersRef = useRef<any[]>([])
@@ -153,7 +158,7 @@ const WorldMapJourney = () => {
 
   // Get icon component based on string
   const getIcon = (iconName: string) => {
-    const iconMap: { [key: string]: React.ComponentType<{size?: number, color?: string}> } = {
+    const iconMap: { [key: string]: any } = {
       book: Book,
       work: MapPin,
       trophy: Trophy,

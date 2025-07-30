@@ -1,7 +1,8 @@
 "use client"
 
 import React from 'react'
-import { CheckCircle, Award } from 'lucide-react'
+import Link from 'next/link'
+import { CheckCircle, Award, Calendar, MapPin } from 'lucide-react'
 import WorldMapJourney from './LeafletWorldMap'
 import styles from '../../styles/components/About.module.css'
 
@@ -22,6 +23,24 @@ const About = () => {
     "Geospatial Analytics",
     "High Performance Computing (HPC) & Multi-GPU Cluster Environments",
     "Cloud Platforms (Google Earth Engine, AWS EMR)"
+  ]
+
+  const timeline = [
+    {
+      year: "2023 - Present",
+      title: "Senior EO & AI Specialist",
+      description: "Leading satellite data analysis projects and developing AI solutions for environmental monitoring and climate research."
+    },
+    {
+      year: "2021 - 2023", 
+      title: "Remote Sensing Analyst",
+      description: "Specialized in processing and analyzing satellite imagery for land use monitoring and change detection studies."
+    },
+    {
+      year: "2019 - 2021",
+      title: "Research Assistant",
+      description: "Conducted research on machine learning applications in Earth observation and published multiple papers."
+    }
   ]
 
   return (

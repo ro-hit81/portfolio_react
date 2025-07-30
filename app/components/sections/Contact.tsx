@@ -235,7 +235,7 @@ const Contact = () => {
 
         {/* Social Links */}
         <div className={styles.socialSection}>
-          <h3 className={styles.socialTitle}>Let&apos;s Connect</h3>
+          <h3 className={styles.socialTitle}>Let's Connect</h3>
           <p className={styles.socialSubtitle}>
             Follow me on social media or connect professionally
           </p>

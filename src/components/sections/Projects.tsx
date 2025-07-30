@@ -1,48 +1,39 @@
 import React from 'react'
-import { ExternalLink, Github, Satellite, Brain, Database, Globe, Lock } from 'lucide-react'
+import { ExternalLink, Github, Satellite, Brain, Database, Globe } from 'lucide-react'
 
 const Projects = () => {
   const projects = [
     {
-      title: 'ML4EARTH: Prithvi4QR Foundation Models',
-      description: '🏆 Winner of ML4Earth Hackathon 2024. Foundation model for emergency response using NASA-IBM Prithvi-ViT-100 for land cover classification with 90.43% accuracy.',
-      technologies: ['PyTorch Lightning', 'Prithvi-ViT-100', 'TeraTorch', 'Earth Observation'],
+      title: 'Climate Change Monitoring System',
+      description: 'AI-powered platform for analyzing satellite imagery to track deforestation and climate change indicators across global regions.',
+      technologies: ['Python', 'TensorFlow', 'Sentinel-2', 'GEE'],
       icon: Satellite,
-      github: 'https://github.com/ro-hit81/ML4EARTH',
-      demo: 'https://ml4earth24.devpost.com/',
-    },
-    {
-      title: 'Landcover GEE Classification',
-      description: 'Advanced land cover classification system using Google Earth Engine for multi-temporal satellite imagery analysis and environmental monitoring.',
-      technologies: ['Google Earth Engine', 'JavaScript', 'Sentinel-2', 'Machine Learning'],
-      icon: Globe,
-      github: 'https://github.com/ro-hit81/Landcover_GEE',
+      github: 'https://github.com/ro-hit81',
       demo: '#',
     },
     {
-      title: 'U-Net Landsat 10-Class Segmentation',
-      description: 'Deep learning semantic segmentation model using U-Net architecture for 10-class land cover classification from Landsat satellite imagery.',
-      technologies: ['TensorFlow', 'U-Net', 'Landsat', 'Semantic Segmentation'],
+      title: 'Agricultural Crop Classification',
+      description: 'Deep learning model for automated crop type classification using multi-temporal satellite imagery with 95% accuracy.',
+      technologies: ['PyTorch', 'Landsat', 'Computer Vision', 'GIS'],
       icon: Brain,
-      github: 'https://github.com/ro-hit81/unet_landsat_10_class',
+      github: 'https://github.com/ro-hit81',
       demo: '#',
     },
     {
-      title: 'Automatic Satellite Image Downloader',
-      description: 'Automated tool for downloading Landsat satellite imagery using Google Earth Engine API with support for all Landsat missions and batch processing.',
-      technologies: ['Python', 'Google Earth Engine', 'Jupyter', 'Landsat'],
+      title: 'Earth Observation Data Pipeline',
+      description: 'Scalable cloud-based pipeline for processing and analyzing large-scale satellite imagery data in real-time.',
+      technologies: ['AWS', 'Docker', 'Apache Spark', 'PostgreSQL'],
       icon: Database,
-      github: 'https://github.com/ro-hit81/Automatic-Satellite-Image-Downloader',
-      demo: 'https://colab.research.google.com/github/ro-hit81/Automatic-Satellite-Image-Downloader/blob/master/LandsatDownloader.ipynb',
+      github: 'https://github.com/ro-hit81',
+      demo: '#',
     },
     {
-      title: 'Proportion Approach for Deep Learning',
-      description: 'Novel approach for improving deep learning model performance through proportional data analysis and advanced training strategies.',
-      technologies: ['Python', 'Deep Learning', 'Data Analysis', 'Model Optimization'],
-      icon: Brain,
-      github: 'https://github.com/ro-hit81/Proportion-Approach',
+      title: 'Disaster Response Platform',
+      description: 'Emergency response system using satellite imagery and AI to assess damage and coordinate relief efforts during natural disasters.',
+      technologies: ['React', 'Node.js', 'Machine Learning', 'APIs'],
+      icon: Globe,
+      github: 'https://github.com/ro-hit81',
       demo: '#',
-      private: true,
     },
   ]
 
@@ -54,7 +45,7 @@ const Projects = () => {
         to solve real-world challenges and create positive impact.
       </p>
       
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-2">
         {projects.map((project, index) => (
           <div key={index} className="card">
             <div className="flex items-center mb-4">
@@ -69,12 +60,7 @@ const Projects = () => {
               >
                 <project.icon className="w-6 h-6" style={{ color: 'white' }} />
               </div>
-              <h3 style={{ margin: '0', flex: 1 }}>{project.title}</h3>
-              {project.private && (
-                <div title="Private Repository">
-                  <Lock className="w-4 h-4 text-gray-500" />
-                </div>
-              )}
+              <h3 style={{ margin: '0' }}>{project.title}</h3>
             </div>
             
             <p className="mb-4">{project.description}</p>
@@ -106,20 +92,16 @@ const Projects = () => {
                 style={{ padding: '8px 16px', fontSize: '0.875rem' }}
               >
                 <Github className="w-4 h-4 mr-2" />
-                {project.private ? 'Private' : 'Code'}
+                Code
               </a>
-              {project.demo !== '#' && (
-                <a 
-                  href={project.demo} 
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="btn-primary"
-                  style={{ padding: '8px 16px', fontSize: '0.875rem' }}
-                >
-                  <ExternalLink className="w-4 h-4 mr-2" />
-                  {project.title.includes('ML4EARTH') ? 'Competition' : project.demo.includes('colab') ? 'Colab' : 'Demo'}
-                </a>
-              )}
+              <a 
+                href={project.demo} 
+                className="btn-primary"
+                style={{ padding: '8px 16px', fontSize: '0.875rem' }}
+              >
+                <ExternalLink className="w-4 h-4 mr-2" />
+                Demo
+              </a>
             </div>
           </div>
         ))}

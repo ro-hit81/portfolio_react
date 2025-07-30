@@ -61,18 +61,18 @@ const About = () => {
         <div>
           <h3 className="mb-4">Passionate About Innovation</h3>
           <p className="mb-4">
-            I&apos;m a dedicated Earth Observation and AI specialist with over 5 years of experience 
+            I'm a dedicated Earth Observation and AI specialist with over 5 years of experience 
             in transforming satellite data into actionable insights. My journey began with a 
             fascination for space technology and has evolved into a career focused on solving 
             real-world challenges through innovative AI solutions.
           </p>
           <p className="mb-4">
-            Based in India, I&apos;ve had the privilege of working on projects ranging from climate 
+            Based in India, I've had the privilege of working on projects ranging from climate 
             monitoring to agricultural optimization, always with the goal of making a positive 
             impact on our planet and society.
           </p>
           <p>
-            When I&apos;m not analyzing satellite imagery or training neural networks, you&apos;ll find 
+            When I'm not analyzing satellite imagery or training neural networks, you'll find 
             me exploring new technologies, contributing to open-source projects, or sharing 
             knowledge with the community through talks and workshops.
           </p>

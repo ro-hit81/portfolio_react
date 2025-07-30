@@ -40,14 +40,14 @@ const Contact = () => {
     <section className="container">
       <h2 className="gradient-text mb-8">Get In Touch</h2>
       <p className="text-center mb-8" style={{ maxWidth: '600px', margin: '0 auto 2rem' }}>
-        Ready to collaborate on exciting Earth Observation and AI projects? Let&apos;s discuss how we can 
+        Ready to collaborate on exciting Earth Observation and AI projects? Let's discuss how we can 
         work together to create innovative solutions that make a positive impact.
       </p>
       
       <div className="grid grid-2">
         {/* Contact Information */}
         <div>
-          <h3 className="mb-6">Let&apos;s Connect</h3>
+          <h3 className="mb-6">Let's Connect</h3>
           
           <div style={{ display: 'grid', gap: '20px', marginBottom: '30px' }}>
             {contactInfo.map((item, index) => (

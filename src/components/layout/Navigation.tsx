@@ -71,14 +71,12 @@ const Navigation = () => {
                   transition: 'all 0.2s ease',
                 }}
                 onMouseEnter={(e) => {
-                  const target = e.target as HTMLElement;
-                  target.style.color = '#3b82f6';
-                  target.style.backgroundColor = 'rgba(255, 255, 255, 0.5)';
+                  e.target.style.color = '#3b82f6';
+                  e.target.style.backgroundColor = 'rgba(255, 255, 255, 0.5)';
                 }}
                 onMouseLeave={(e) => {
-                  const target = e.target as HTMLElement;
-                  target.style.color = '#64748b';
-                  target.style.backgroundColor = 'transparent';
+                  e.target.style.color = '#64748b';
+                  e.target.style.backgroundColor = 'transparent';
                 }}
               >
                 {item.label}
@@ -174,14 +172,12 @@ const Navigation = () => {
                     transition: 'all 0.2s ease',
                   }}
                   onMouseEnter={(e) => {
-                    const target = e.target as HTMLElement;
-                    target.style.color = '#3b82f6';
-                    target.style.backgroundColor = 'rgba(255, 255, 255, 0.5)';
+                    e.target.style.color = '#3b82f6';
+                    e.target.style.backgroundColor = 'rgba(255, 255, 255, 0.5)';
                   }}
                   onMouseLeave={(e) => {
-                    const target = e.target as HTMLElement;
-                    target.style.color = '#64748b';
-                    target.style.backgroundColor = 'transparent';
+                    e.target.style.color = '#64748b';
+                    e.target.style.backgroundColor = 'transparent';
                   }}
                 >
                   {item.label}
@@ -195,7 +191,7 @@ const Navigation = () => {
                 className="btn-primary"
                 style={{ display: 'block', textAlign: 'center', width: '100%' }}
               >
-                Let&apos;s Work Together
+                Let's Work Together
               </a>
             </div>
           </div>

@@ -93,7 +93,7 @@ const AcademicHistory = () => {
       {/* Academic History */}
       <div className={styles.content}>
         <div className={styles.container}>
-          {academicHistory.map((education) => (
+          {academicHistory.map((education, index) => (
             <div key={education.id} className={styles.academicCard}>
               <div className={styles.cardHeader}>
                 <div className={styles.levelBadge}>
