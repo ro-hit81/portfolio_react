@@ -2,7 +2,7 @@
 
 import React from 'react'
 import Link from 'next/link'
-import { ArrowDown, Eye, Sparkles, Satellite, Brain, GraduationCap, Trophy } from 'lucide-react'
+import { ArrowDown, Eye, Sparkles, Brain, GraduationCap, Trophy } from 'lucide-react'
 import styles from '../../styles/components/Hero.module.css'
 
 const Hero = () => {
@@ -54,7 +54,7 @@ const Hero = () => {
             <ArrowDown size={18} />
           </button>
           <a
-            href="/resume.pdf"
+            href="/docs/Rohit-Khati-Resume.pdf"
             target="_blank"
             rel="noopener noreferrer"
             className={styles.secondaryButton}

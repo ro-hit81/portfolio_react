@@ -1,7 +1,7 @@
 "use client"
 
 import React, { useEffect, useState, useCallback, useRef } from 'react'
-import { MapPin, Award, Book, School, Trophy, Laptop, FileText } from 'lucide-react'
+import { MapPin, Award, Book, School, Trophy, Laptop } from 'lucide-react'
 import styles from './WorldMapJourney.module.css'
 
 interface JourneyEvent {
@@ -17,10 +17,9 @@ interface JourneyEvent {
   size: number
 }
 
-// Define Leaflet types
 declare global {
   interface Window {
-    L: any;
+    L: any; // Leaflet library loaded dynamically
   }
 }
 
@@ -29,7 +28,6 @@ const WorldMapJourney = () => {
   const [animationPhase, setAnimationPhase] = useState(0)
   const [leafletLoaded, setLeafletLoaded] = useState(false)
   const [isAnimating, setIsAnimating] = useState(false)
-  const [airplanePosition, setAirplanePosition] = useState<{lat: number, lng: number} | null>(null)
   const [traveledPlaces, setTraveledPlaces] = useState<JourneyEvent[]>([])
   const [animationCompleted, setAnimationCompleted] = useState(false)
   const [manIconMarker, setManIconMarker] = useState<any>(null)
@@ -38,7 +36,7 @@ const WorldMapJourney = () => {
   const markersRef = useRef<any[]>([])
   const polylinesRef = useRef<any[]>([])
   const airplaneMarkerRef = useRef<any>(null)
-  const animationRef = useRef<any>(null)
+  const animationRef = useRef<number | null>(null)
   const restartButtonRef = useRef<any>(null)
 
   // Journey data with geographical locations (sorted chronologically)
@@ -307,6 +305,7 @@ const WorldMapJourney = () => {
 
     return new Promise<void>((resolve) => {
       const map = mapInstanceRef.current
+      if (!map) return resolve()
       const startTime = Date.now()
       
       // Calculate great circle path points for curved trajectory
@@ -411,21 +410,21 @@ const WorldMapJourney = () => {
             })
             airplaneMarkerRef.current.setIcon(updatedIcon)
             airplaneMarkerRef.current.setLatLng([lat, lng])
-            setAirplanePosition({ lat, lng })
           }
         } else {
           // For the very beginning, just update position
           if (airplaneMarkerRef.current) {
             airplaneMarkerRef.current.setLatLng([lat, lng])
-            setAirplanePosition({ lat, lng })
           }
         }
         
         // Smooth camera following without zoom changes - maintain consistent zoom level
-        map.setView([lat, lng], 6, { animate: true, duration: 0.1 })
+        if (map) {
+          map.setView([lat, lng], 6, { animate: true, duration: 0.1 })
+        }
         
         // Update dynamic trail line that follows the airplane
-        if (dynamicTrailLine) {
+        if (dynamicTrailLine && map) {
           map.removeLayer(dynamicTrailLine)
         }
         
@@ -440,7 +439,7 @@ const WorldMapJourney = () => {
           }
           
           if (trailPoints.length > 1) {
-            const trailCoords = trailPoints.map(point => [point.lat, point.lng])
+            const trailCoords = trailPoints.map(point => [point.lat, point.lng] as [number, number])
             dynamicTrailLine = window.L.polyline(trailCoords, {
               color: '#667eea',
               weight: 4,
@@ -511,10 +510,12 @@ const WorldMapJourney = () => {
     return new Promise<void>((resolve) => {
       const map = mapInstanceRef.current
       
-      map.flyTo([event.lat, event.lng], zoom, {
-        duration: 1.5,
-        easeLinearity: 0.5
-      })
+      if (map) {
+        map.flyTo([event.lat, event.lng], zoom, {
+          duration: 1.5,
+          easeLinearity: 0.5
+        })
+      }
       
       setTimeout(resolve, 1500)
     })
@@ -529,6 +530,7 @@ const WorldMapJourney = () => {
       
       setIsAnimating(true)
       const map = mapInstanceRef.current
+      if (!map) return
       const currentEvent = journeyEvents[animationPhase - 1]
       const previousEvent = animationPhase > 1 ? journeyEvents[animationPhase - 2] : null
 
@@ -539,7 +541,7 @@ const WorldMapJourney = () => {
           const lastPolylineIndex = polylinesRef.current.length - 1
           if (lastPolylineIndex >= 0) {
             const lastPolyline = polylinesRef.current[lastPolylineIndex]
-            if (lastPolyline && map.hasLayer(lastPolyline)) {
+            if (lastPolyline && map && map.hasLayer(lastPolyline)) {
               // Change the style of the existing line instead of removing it
               lastPolyline.setStyle({
                 color: '#888888',
@@ -606,7 +608,7 @@ const WorldMapJourney = () => {
             icon: manIcon,
             zIndexOffset: 1000,
             interactive: false
-          }).addTo(mapInstanceRef.current)
+          }).addTo(map)
           
           setManIconMarker(manMarker)
           setAnimationCompleted(true)

@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react'
 import { 
-  Code2, Database, Brain, Globe2, Award, Settings,
+  Code2, Database, Brain, Globe2, Award,
   FileCode, BarChart3, CloudCog, Layers, Map, 
   Satellite, Monitor, GitBranch, Container, Cpu, Zap
 } from 'lucide-react'
