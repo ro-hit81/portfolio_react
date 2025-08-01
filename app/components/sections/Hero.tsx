@@ -35,6 +35,16 @@ const Hero = () => {
               Rohit Khati
             </span>
           </h1>
+          
+          {/* Profile Picture Section - Between name and subtitle */}
+          <div className={styles.profileSection}>
+            <img 
+              src="/rohit.jpg" 
+              alt="Rohit Khati Profile" 
+              className={styles.profilePicture}
+            />
+          </div>
+          
           <h2 className={styles.subtitle}>
             Earth Observation & AI Specialist
           </h2>

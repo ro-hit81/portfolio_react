@@ -23,6 +23,56 @@
   background-clip: text;
 }
 
+/* Professional headshot section */
+.headshotSection {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 3rem;
+}
+
+.headshotPlaceholder {
+  width: 120px;
+  height: 120px;
+  border-radius: 20px;
+  border: 2px dashed rgba(59, 130, 246, 0.4);
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(139, 92, 246, 0.1));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 10px 25px rgba(59, 130, 246, 0.1);
+}
+
+.headshotText {
+  font-size: 0.75rem;
+  color: rgba(59, 130, 246, 0.8);
+  text-align: center;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.headshot {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 18px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.headshot:hover {
+  transform: scale(1.05);
+}
+
+@media (min-width: 768px) {
+  .headshotPlaceholder,
+  .headshot {
+    width: 150px;
+    height: 150px;
+  }
+}
+
 .content {
   display: grid;
   grid-template-columns: 1fr;

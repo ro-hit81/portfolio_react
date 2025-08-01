@@ -321,18 +321,18 @@
     height: auto;
   }
   
-  .mapCard {
+  .traveledCard {
     order: 1;
     border-radius: 15px;
     border: 1px solid rgba(255, 255, 255, 0.2);
-    min-height: 350px;
+    min-height: 250px;
   }
   
-  .traveledCard {
+  .mapCard {
     order: 2;
     border-radius: 15px;
     border: 1px solid rgba(255, 255, 255, 0.2);
-    min-height: 250px;
+    min-height: 350px;
   }
   
   .currentCard {

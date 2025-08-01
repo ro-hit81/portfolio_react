@@ -244,7 +244,6 @@ const WorldMapJourney = () => {
 
     // Start animation after map is ready with better initialization
     setTimeout(() => {
-      console.log('Starting initial animation phase')
       setAnimationPhase(1)
     }, 1500) // Increased delay to ensure map is fully loaded
 
@@ -540,11 +539,8 @@ const WorldMapJourney = () => {
   useEffect(() => {
     if (!mapInstanceRef.current || animationPhase === 0 || isAnimating || animationCompleted) return
 
-    console.log(`Starting animation for phase ${animationPhase}`)
-
     const runAnimation = async () => {
       if (animationPhase > journeyEvents.length) {
-        console.log('Animation completed - all events processed')
         return
       }
       
@@ -552,8 +548,6 @@ const WorldMapJourney = () => {
       const map = mapInstanceRef.current
       const currentEvent = journeyEvents[animationPhase - 1]
       const previousEvent = animationPhase > 1 ? journeyEvents[animationPhase - 2] : null
-
-      console.log(`Processing event: ${currentEvent.title}`)
 
       try {
         // If this is not the first event, animate airplane travel with camera following
@@ -642,9 +636,8 @@ const WorldMapJourney = () => {
         await new Promise(resolve => setTimeout(resolve, 1000))
 
       } catch (error) {
-        console.error('Animation error:', error)
+        // Handle animation errors gracefully
       } finally {
-        console.log(`Finished processing phase ${animationPhase}, setting isAnimating to false`)
         setIsAnimating(false)
       }
     }
@@ -656,15 +649,11 @@ const WorldMapJourney = () => {
   useEffect(() => {
     // Only progress if we're not currently animating and haven't completed
     if (isAnimating || animationPhase === 0 || animationCompleted) {
-      console.log(`Skipping progression: isAnimating=${isAnimating}, phase=${animationPhase}, completed=${animationCompleted}`)
       return
     }
 
-    console.log(`Animation phase: ${animationPhase}, Total events: ${journeyEvents.length}`)
-
     // If we've reached the end, mark as completed
     if (animationPhase >= journeyEvents.length) {
-      console.log('Animation completed - marking as finished')
       setAnimationCompleted(true)
       return
     }
@@ -672,7 +661,6 @@ const WorldMapJourney = () => {
     const timer = setTimeout(() => {
       setAnimationPhase(prev => {
         const nextPhase = prev + 1
-        console.log(`Moving from phase ${prev} to ${nextPhase}`)
         return nextPhase
       })
     }, 500) // Increased delay to ensure previous animation completes

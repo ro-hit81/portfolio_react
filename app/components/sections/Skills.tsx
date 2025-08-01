@@ -30,7 +30,7 @@ const Skills = () => {
           setIsVisible(true)
         }
       },
-      { threshold: 0.3 }
+      { threshold: 0.1 } // Lowered threshold for better mobile detection
     )
 
     const element = document.getElementById('skills')
@@ -38,8 +38,18 @@ const Skills = () => {
       observer.observe(element)
     }
 
-    return () => observer.disconnect()
-  }, [])
+    // Fallback: trigger animation after 2 seconds if not already visible
+    const fallbackTimer = setTimeout(() => {
+      if (!isVisible) {
+        setIsVisible(true)
+      }
+    }, 2000)
+
+    return () => {
+      observer.disconnect()
+      clearTimeout(fallbackTimer)
+    }
+  }, [isVisible])
 
   const skillCategories = [
     {
@@ -243,6 +253,26 @@ const Skills = () => {
         <h2 className={styles.sectionTitle}>
           Skills & Expertise
         </h2>
+        
+        {/* Debug button - remove in production */}
+        {!isVisible && (
+          <button 
+            onClick={() => setIsVisible(true)}
+            style={{
+              position: 'fixed',
+              top: '10px',
+              right: '10px',
+              background: '#3b82f6',
+              color: 'white',
+              border: 'none',
+              padding: '10px',
+              borderRadius: '5px',
+              zIndex: 1000
+            }}
+          >
+            Trigger Animation
+          </button>
+        )}
 
         {/* Skills Grid */}
         <div className={styles.skillsGrid}>
@@ -273,9 +303,18 @@ const Skills = () => {
                           <div 
                             className={`${styles.progressFill} ${styles[category.colorClass]}`}
                             style={{ 
-                              width: isVisible ? `${skill.level}%` : '0%'
+                              width: isVisible ? `${skill.level}%` : '0%',
+                              backgroundColor: isVisible ? undefined : '#e2e8f0' // Fallback color
                             }}
-                          />
+                            data-level={skill.level}
+                            data-category={category.colorClass}
+                            data-visible={isVisible}
+                          >
+                            {/* Floating bubbles */}
+                            <div className={styles.bubble1}></div>
+                            <div className={styles.bubble2}></div>
+                            <div className={styles.bubble3}></div>
+                          </div>
                         </div>
                       </div>
                     )

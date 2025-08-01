@@ -1,0 +1,572 @@
+/* Satellite Background Container */
+.satelliteContainer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 5;
+  opacity: 0.9;
+}
+
+/* Constellation stars */
+.constellation {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.star {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 50%;
+  animation: twinkle 4s ease-in-out infinite;
+}
+
+@keyframes twinkle {
+  0%, 100% { opacity: 0.2; transform: scale(1); }
+  50% { opacity: 0.6; transform: scale(1.2); }
+}
+
+/* Satellite Icon Styling */
+.satelliteIcon {
+  fill: currentColor;
+  filter: drop-shadow(0 0 4px rgba(0, 0, 0, 0.3));
+  opacity: 0.25; /* Even more transparent for minimal distraction */
+}
+
+/* Color classes for different satellite pairs */
+.blueColor {
+  color: #3b82f6; /* Blue */
+}
+
+.cyanColor {
+  color: #06b6d4; /* Cyan */
+}
+
+.greenColor {
+  color: #10b981; /* Emerald green */
+}
+
+.emeraldColor {
+  color: #059669; /* Darker emerald */
+}
+
+.purpleColor {
+  color: #8b5cf6; /* Purple/violet */
+}
+
+.pinkColor {
+  color: #ec4899; /* Pink */
+}
+
+.orangeColor {
+  color: #f97316; /* Orange */
+}
+
+.yellowColor {
+  color: #eab308; /* Yellow */
+}
+
+.indigoColor {
+  color: #6366f1; /* Indigo */
+}
+
+.tealColor {
+  color: #14b8a6; /* Teal */
+}
+
+.roseColor {
+  color: #f43f5e; /* Rose */
+}
+
+.amberColor {
+  color: #f59e0b; /* Amber */
+}
+
+@keyframes satelliteRotate {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* PAIR 1 - Upper area (25vh) - Left to Right with Crossing Curves */
+@keyframes pair1A {
+  0% {
+    transform: translateX(-100px) translateY(calc(25vh + 0px));
+  }
+  12.5% {
+    transform: translateX(12.5vw) translateY(calc(25vh + 80px));
+  }
+  25% {
+    transform: translateX(25vw) translateY(calc(25vh + 120px));
+  }
+  37.5% {
+    transform: translateX(37.5vw) translateY(calc(25vh + 80px));
+  }
+  50% {
+    transform: translateX(50vw) translateY(calc(25vh + 0px));
+  }
+  62.5% {
+    transform: translateX(62.5vw) translateY(calc(25vh - 80px));
+  }
+  75% {
+    transform: translateX(75vw) translateY(calc(25vh - 120px));
+  }
+  87.5% {
+    transform: translateX(87.5vw) translateY(calc(25vh - 80px));
+  }
+  100% {
+    transform: translateX(calc(100vw + 100px)) translateY(calc(25vh + 0px));
+  }
+}
+
+@keyframes pair1B {
+  0% {
+    transform: translateX(-100px) translateY(calc(25vh + 0px));
+  }
+  12.5% {
+    transform: translateX(12.5vw) translateY(calc(25vh - 80px));
+  }
+  25% {
+    transform: translateX(25vw) translateY(calc(25vh - 120px));
+  }
+  37.5% {
+    transform: translateX(37.5vw) translateY(calc(25vh - 80px));
+  }
+  50% {
+    transform: translateX(50vw) translateY(calc(25vh + 0px));
+  }
+  62.5% {
+    transform: translateX(62.5vw) translateY(calc(25vh + 80px));
+  }
+  75% {
+    transform: translateX(75vw) translateY(calc(25vh + 120px));
+  }
+  87.5% {
+    transform: translateX(87.5vw) translateY(calc(25vh + 80px));
+  }
+  100% {
+    transform: translateX(calc(100vw + 100px)) translateY(calc(25vh + 0px));
+  }
+}
+
+/* PAIR 2 - Lower area (65vh) - Right to Left with Crossing Curves */
+@keyframes pair2A {
+  0% {
+    transform: translateX(calc(100vw + 100px)) translateY(calc(65vh + 0px));
+  }
+  12.5% {
+    transform: translateX(87.5vw) translateY(calc(65vh + 90px));
+  }
+  25% {
+    transform: translateX(75vw) translateY(calc(65vh + 130px));
+  }
+  37.5% {
+    transform: translateX(62.5vw) translateY(calc(65vh + 90px));
+  }
+  50% {
+    transform: translateX(50vw) translateY(calc(65vh + 0px));
+  }
+  62.5% {
+    transform: translateX(37.5vw) translateY(calc(65vh - 90px));
+  }
+  75% {
+    transform: translateX(25vw) translateY(calc(65vh - 130px));
+  }
+  87.5% {
+    transform: translateX(12.5vw) translateY(calc(65vh - 90px));
+  }
+  100% {
+    transform: translateX(-100px) translateY(calc(65vh + 0px));
+  }
+}
+
+@keyframes pair2B {
+  0% {
+    transform: translateX(calc(100vw + 100px)) translateY(calc(65vh + 0px));
+  }
+  12.5% {
+    transform: translateX(87.5vw) translateY(calc(65vh - 90px));
+  }
+  25% {
+    transform: translateX(75vw) translateY(calc(65vh - 130px));
+  }
+  37.5% {
+    transform: translateX(62.5vw) translateY(calc(65vh - 90px));
+  }
+  50% {
+    transform: translateX(50vw) translateY(calc(65vh + 0px));
+  }
+  62.5% {
+    transform: translateX(37.5vw) translateY(calc(65vh + 90px));
+  }
+  75% {
+    transform: translateX(25vw) translateY(calc(65vh + 130px));
+  }
+  87.5% {
+    transform: translateX(12.5vw) translateY(calc(65vh + 90px));
+  }
+  100% {
+    transform: translateX(-100px) translateY(calc(65vh + 0px));
+  }
+}
+
+/* Satellite Positioning */
+
+/* Pair 1 - Upper area */
+.pair1A {
+  position: absolute;
+  top: 0;
+  left: -100px;
+  animation: pair1A 45s linear infinite; /* Slower */
+}
+
+.pair1B {
+  position: absolute;
+  top: 0;
+  left: -100px;
+  animation: pair1B 45s linear infinite; /* Slower */
+  animation-delay: 11.25s; /* 25% of 45s */
+}
+
+/* Pair 2 - Lower area */
+.pair2A {
+  position: absolute;
+  top: calc(65vh - 0px);
+  right: -100px;
+  animation: pair2A 55s linear infinite; /* Very slow */
+}
+
+.pair2B {
+  position: absolute;
+  top: calc(65vh - 0px);
+  right: -100px;
+  animation: pair2B 55s linear infinite; /* Very slow */
+  animation-delay: 13.75s; /* 25% of 55s */
+}
+
+/* Responsive adjustments */
+/* PAIR 3 - Bottom right area, right to left */
+.pair3A {
+  position: absolute;
+  bottom: 15%;
+  right: -100px;
+  animation: pair3A 38s linear infinite; /* Moderate speed */
+}
+
+.pair3B {
+  position: absolute;
+  bottom: 15%;
+  right: -100px;
+  animation: pair3B 38s linear infinite; /* Moderate speed */
+  animation-delay: 9.5s; /* 25% of 38s */
+}
+
+@keyframes pair3A {
+  0% {
+    transform: translateX(0px) translateY(0px);
+  }
+  12.5% {
+    transform: translateX(-12.5vw) translateY(-90px);
+  }
+  25% {
+    transform: translateX(-25vw) translateY(-130px);
+  }
+  37.5% {
+    transform: translateX(-37.5vw) translateY(-90px);
+  }
+  50% {
+    transform: translateX(-50vw) translateY(0px);
+  }
+  62.5% {
+    transform: translateX(-62.5vw) translateY(90px);
+  }
+  75% {
+    transform: translateX(-75vw) translateY(130px);
+  }
+  87.5% {
+    transform: translateX(-87.5vw) translateY(90px);
+  }
+  100% {
+    transform: translateX(calc(-100vw - 100px)) translateY(0px);
+  }
+}
+
+@keyframes pair3B {
+  0% {
+    transform: translateX(0px) translateY(0px);
+  }
+  12.5% {
+    transform: translateX(-12.5vw) translateY(90px);
+  }
+  25% {
+    transform: translateX(-25vw) translateY(130px);
+  }
+  37.5% {
+    transform: translateX(-37.5vw) translateY(90px);
+  }
+  50% {
+    transform: translateX(-50vw) translateY(0px);
+  }
+  62.5% {
+    transform: translateX(-62.5vw) translateY(-90px);
+  }
+  75% {
+    transform: translateX(-75vw) translateY(-130px);
+  }
+  87.5% {
+    transform: translateX(-87.5vw) translateY(-90px);
+  }
+  100% {
+    transform: translateX(calc(-100vw - 100px)) translateY(0px);
+  }
+}
+
+/* PAIR 4 - Random middle area, left to right - Fast speed */
+.pair4A {
+  position: absolute;
+  top: 40%;
+  left: -100px;
+  animation: pair4A 32s linear infinite; /* Reduced from too fast */
+}
+
+.pair4B {
+  position: absolute;
+  top: 40%;
+  left: -100px;
+  animation: pair4B 32s linear infinite; /* Reduced from too fast */
+  animation-delay: 8s; /* 25% of 32s */
+}
+
+@keyframes pair4A {
+  0% {
+    transform: translateX(0px) translateY(0px);
+  }
+  12.5% {
+    transform: translateX(12.5vw) translateY(-70px);
+  }
+  25% {
+    transform: translateX(25vw) translateY(-100px);
+  }
+  37.5% {
+    transform: translateX(37.5vw) translateY(-70px);
+  }
+  50% {
+    transform: translateX(50vw) translateY(0px);
+  }
+  62.5% {
+    transform: translateX(62.5vw) translateY(70px);
+  }
+  75% {
+    transform: translateX(75vw) translateY(100px);
+  }
+  87.5% {
+    transform: translateX(87.5vw) translateY(70px);
+  }
+  100% {
+    transform: translateX(calc(100vw + 100px)) translateY(0px);
+  }
+}
+
+@keyframes pair4B {
+  0% {
+    transform: translateX(0px) translateY(0px);
+  }
+  12.5% {
+    transform: translateX(12.5vw) translateY(70px);
+  }
+  25% {
+    transform: translateX(25vw) translateY(100px);
+  }
+  37.5% {
+    transform: translateX(37.5vw) translateY(70px);
+  }
+  50% {
+    transform: translateX(50vw) translateY(0px);
+  }
+  62.5% {
+    transform: translateX(62.5vw) translateY(-70px);
+  }
+  75% {
+    transform: translateX(75vw) translateY(-100px);
+  }
+  87.5% {
+    transform: translateX(87.5vw) translateY(-70px);
+  }
+  100% {
+    transform: translateX(calc(100vw + 100px)) translateY(0px);
+  }
+}
+
+/* PAIR 5 - Random upper middle, right to left - Slow speed */
+.pair5A {
+  position: absolute;
+  top: 25%;
+  right: -100px;
+  animation: pair5A 65s linear infinite; /* Very slow */
+}
+
+.pair5B {
+  position: absolute;
+  top: 25%;
+  right: -100px;
+  animation: pair5B 65s linear infinite; /* Very slow */
+  animation-delay: 16.25s; /* 25% of 65s */
+}
+
+@keyframes pair5A {
+  0% {
+    transform: translateX(0px) translateY(0px);
+  }
+  12.5% {
+    transform: translateX(-12.5vw) translateY(-80px);
+  }
+  25% {
+    transform: translateX(-25vw) translateY(-110px);
+  }
+  37.5% {
+    transform: translateX(-37.5vw) translateY(-80px);
+  }
+  50% {
+    transform: translateX(-50vw) translateY(0px);
+  }
+  62.5% {
+    transform: translateX(-62.5vw) translateY(80px);
+  }
+  75% {
+    transform: translateX(-75vw) translateY(110px);
+  }
+  87.5% {
+    transform: translateX(-87.5vw) translateY(80px);
+  }
+  100% {
+    transform: translateX(calc(-100vw - 100px)) translateY(0px);
+  }
+}
+
+@keyframes pair5B {
+  0% {
+    transform: translateX(0px) translateY(0px);
+  }
+  12.5% {
+    transform: translateX(-12.5vw) translateY(80px);
+  }
+  25% {
+    transform: translateX(-25vw) translateY(110px);
+  }
+  37.5% {
+    transform: translateX(-37.5vw) translateY(80px);
+  }
+  50% {
+    transform: translateX(-50vw) translateY(0px);
+  }
+  62.5% {
+    transform: translateX(-62.5vw) translateY(-80px);
+  }
+  75% {
+    transform: translateX(-75vw) translateY(-110px);
+  }
+  87.5% {
+    transform: translateX(-87.5vw) translateY(-80px);
+  }
+  100% {
+    transform: translateX(calc(-100vw - 100px)) translateY(0px);
+  }
+}
+
+/* PAIR 6 - Random lower middle, left to right - Medium speed */
+.pair6A {
+  position: absolute;
+  top: 75%;
+  left: -100px;
+  animation: pair6A 42s linear infinite; /* Slower */
+}
+
+.pair6B {
+  position: absolute;
+  top: 75%;
+  left: -100px;
+  animation: pair6B 42s linear infinite; /* Slower */
+  animation-delay: 10.5s; /* 25% of 42s */
+}
+
+@keyframes pair6A {
+  0% {
+    transform: translateX(0px) translateY(0px);
+  }
+  12.5% {
+    transform: translateX(12.5vw) translateY(-60px);
+  }
+  25% {
+    transform: translateX(25vw) translateY(-85px);
+  }
+  37.5% {
+    transform: translateX(37.5vw) translateY(-60px);
+  }
+  50% {
+    transform: translateX(50vw) translateY(0px);
+  }
+  62.5% {
+    transform: translateX(62.5vw) translateY(60px);
+  }
+  75% {
+    transform: translateX(75vw) translateY(85px);
+  }
+  87.5% {
+    transform: translateX(87.5vw) translateY(60px);
+  }
+  100% {
+    transform: translateX(calc(100vw + 100px)) translateY(0px);
+  }
+}
+
+@keyframes pair6B {
+  0% {
+    transform: translateX(0px) translateY(0px);
+  }
+  12.5% {
+    transform: translateX(12.5vw) translateY(60px);
+  }
+  25% {
+    transform: translateX(25vw) translateY(85px);
+  }
+  37.5% {
+    transform: translateX(37.5vw) translateY(60px);
+  }
+  50% {
+    transform: translateX(50vw) translateY(0px);
+  }
+  62.5% {
+    transform: translateX(62.5vw) translateY(-60px);
+  }
+  75% {
+    transform: translateX(75vw) translateY(-85px);
+  }
+  87.5% {
+    transform: translateX(87.5vw) translateY(-60px);
+  }
+  100% {
+    transform: translateX(calc(100vw + 100px)) translateY(0px);
+  }
+}
+
+/* Mobile optimizations */
+@media (max-width: 768px) {
+  .satelliteContainer {
+    opacity: 0.5;
+  }
+  
+  .satelliteIcon {
+    color: rgba(59, 130, 246, 0.6);
+  }
+}
+
+@media (max-width: 480px) {
+  .satelliteContainer {
+    opacity: 0.4;
+  }
+}

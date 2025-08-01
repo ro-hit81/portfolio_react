@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react'
 import { Mail, Phone, MapPin, Github, Linkedin, Twitter } from 'lucide-react'
+import ThankYouPopup from '../ui/ThankYouPopup'
 import styles from '../../styles/components/Contact.module.css'
 
 const Contact = () => {
@@ -14,53 +15,69 @@ const Contact = () => {
   
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
+  const [showThankYouPopup, setShowThankYouPopup] = useState(false)
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target
+    const fieldName = name === 'user_subject' ? 'subject' : name
     setFormData(prev => ({
       ...prev,
-      [name]: value
+      [fieldName]: value
     }))
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setIsSubmitting(true)
     
     try {
-      // Create mailto link with form data
-      const emailSubject = encodeURIComponent(formData.subject || 'Contact from Portfolio Website')
-      const emailBody = encodeURIComponent(
-        `Name: ${formData.name}\n` +
-        `Email: ${formData.email}\n\n` +
-        `Message:\n${formData.message}`
-      )
-      
-      const mailtoLink = `mailto:rhtkhati@gmail.com?subject=${emailSubject}&body=${emailBody}`
-      
-      // Open email client
-      window.location.href = mailtoLink
-      
-      // Reset form after submission
-      setFormData({
-        name: '',
-        email: '',
-        subject: '',
-        message: ''
+      // Web3Forms API endpoint
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          access_key: process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY || "YOUR_WEB3FORMS_ACCESS_KEY",
+          name: formData.name,
+          email: formData.email,
+          subject: formData.subject || 'Contact from Portfolio Website',
+          message: formData.message,
+          // Additional Web3Forms fields
+          "from_name": formData.name,
+          "reply_to": formData.email,
+          "to_email": "rhtkhati@gmail.com"
+        })
       })
+
+      const result = await response.json()
+
+      if (result.success) {
+        // Reset form after successful submission
+        setFormData({
+          name: '',
+          email: '',
+          subject: '',
+          message: ''
+        })
+        setSubmitStatus('success')
+        setShowThankYouPopup(true)
+      } else {
+        setSubmitStatus('error')
+      }
       
-      setSubmitStatus('success')
-      
-      // Reset status after 5 seconds
-      setTimeout(() => {
-        setSubmitStatus('idle')
-      }, 5000)
+      // Reset error status after 5 seconds (success is handled by popup)
+      if (submitStatus === 'error') {
+        setTimeout(() => {
+          setSubmitStatus('idle')
+        }, 5000)
+      }
       
     } catch (error) {
-      console.error('Error opening email client:', error)
       setSubmitStatus('error')
       
-      // Reset status after 5 seconds
+      // Reset error status after 5 seconds
       setTimeout(() => {
         setSubmitStatus('idle')
       }, 5000)
@@ -151,6 +168,13 @@ const Contact = () => {
 
           {/* Contact Form */}
           <form onSubmit={handleSubmit} className={styles.contactForm}>
+            {/* Web3Forms Access Key - Hidden Field */}
+            <input type="hidden" name="access_key" value={process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY || "YOUR_WEB3FORMS_ACCESS_KEY"} />
+            
+            {/* Web3Forms Configuration */}
+            <input type="hidden" name="subject" value="New Contact Form Submission from Portfolio" />
+            <input type="hidden" name="from_name" value="Portfolio Contact Form" />
+            
             <div className={styles.formGroup}>
               <label htmlFor="name" className={styles.formLabel}>
                 Full Name
@@ -188,7 +212,7 @@ const Contact = () => {
               <input
                 type="text"
                 id="subject"
-                name="subject"
+                name="user_subject"
                 value={formData.subject}
                 onChange={handleInputChange}
                 className={styles.formInput}
@@ -215,19 +239,13 @@ const Contact = () => {
               className={styles.submitButton}
               disabled={isSubmitting}
             >
-              {isSubmitting ? 'Opening Email Client...' : 'Send Message'}
+              {isSubmitting ? 'Sending Message...' : 'Send Message'}
             </button>
             
             {/* Status Messages */}
-            {submitStatus === 'success' && (
-              <div className={styles.successMessage}>
-                ✅ Your email client should open with the message pre-filled. Please send it from there!
-              </div>
-            )}
-            
             {submitStatus === 'error' && (
               <div className={styles.errorMessage}>
-                ❌ Unable to open email client. Please email me directly at rhtkhati@gmail.com
+                ❌ Oops! There was an error sending your message. Please try again or email me directly at rhtkhati@gmail.com
               </div>
             )}
           </form>
@@ -258,6 +276,15 @@ const Contact = () => {
           </div>
         </div>
       </div>
+      
+      {/* Thank You Popup */}
+      <ThankYouPopup 
+        isVisible={showThankYouPopup} 
+        onClose={() => {
+          setShowThankYouPopup(false)
+          setSubmitStatus('idle')
+        }} 
+      />
     </section>
   )
 }

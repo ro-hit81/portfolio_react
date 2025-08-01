@@ -17,7 +17,7 @@ export const useAdvancedScroll = () => {
 
   const [fadeOpacity, setFadeOpacity] = useState({ top: 0, bottom: 0 })
 
-  const sections = useMemo(() => ['home', 'about', 'skills', 'projects', 'awards', 'contact'], [])
+  const sections = useMemo(() => ['home', 'about', 'skills', 'blog', 'projects', 'awards', 'contact'], [])
 
   // Throttled scroll handler
   const handleScroll = useCallback(() => {

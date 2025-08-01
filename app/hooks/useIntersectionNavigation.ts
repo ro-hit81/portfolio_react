@@ -11,25 +11,19 @@ export const useIntersectionNavigation = () => {
     // Wait for components to be fully rendered
     const initializeObserver = () => {
       const sections = document.querySelectorAll('section[id]')
-      console.log('Found sections for intersection observer:', Array.from(sections).map(s => s.id))
 
       if (sections.length === 0) {
-        console.error('No sections found for intersection observer!')
         return
       }
 
       observer = new IntersectionObserver(
         (entries) => {
-          console.log('Intersection observer triggered:', entries.length, 'entries')
-          
           // Create a map of all currently intersecting sections
           const intersectingSections = new Map()
           
           entries.forEach((entry) => {
             const ratio = entry.intersectionRatio
             const id = entry.target.id
-            
-            console.log(`Section ${id}: intersecting=${entry.isIntersecting}, ratio=${ratio.toFixed(3)}`)
             
             if (entry.isIntersecting) {
               intersectingSections.set(id, ratio)
@@ -44,12 +38,8 @@ export const useIntersectionNavigation = () => {
             
             const [bestSectionId, bestRatio] = sortedSections[0]
             
-            console.log('All intersecting sections:', sortedSections)
-            console.log(`Best section: ${bestSectionId} with ratio ${bestRatio.toFixed(3)}`)
-            
             // Set active if ratio is significant enough
             if (bestRatio > 0.2) { // Lowered threshold for About section
-              console.log(`Setting active section to: ${bestSectionId}`)
               setActiveSection(bestSectionId)
             }
           }

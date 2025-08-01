@@ -20,9 +20,7 @@ const Navigation = () => {
   ]
 
   const scrollToSection = (sectionId: string) => {
-    console.log('Trying to scroll to section:', sectionId) // Debug log
     const element = document.getElementById(sectionId)
-    console.log('Element found:', element) // Debug log
     
     if (element) {
       // Use the element's scrollIntoView method for more reliable scrolling
@@ -31,8 +29,6 @@ const Navigation = () => {
         block: 'start',
         inline: 'nearest'
       })
-    } else {
-      console.error('Section not found:', sectionId) // Debug log
     }
     // Close mobile menu after clicking
     setIsOpen(false)
@@ -46,7 +42,16 @@ const Navigation = () => {
           {/* Logo Section */}
           <div className={styles.logo}>
             <div className={styles.logoIcon}>
-              <span className={styles.logoText}>RK</span>
+              <div className={styles.eoAiLogo}>
+                <div className={styles.earthOrbit}>
+                  <div className={styles.earthCore}>
+                    <span className={styles.rLetter}>R</span>
+                    <span className={styles.kLetter}>K</span>
+                  </div>
+                  <div className={styles.satellite}></div>
+                  <div className={styles.satellite2}></div>
+                </div>
+              </div>
             </div>
             <div className={styles.logoInfo}>
               <h1 className={styles.logoTitle}>

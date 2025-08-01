@@ -12,10 +12,7 @@ export const useScrollNavigation = () => {
       element: section as HTMLElement
     }))
 
-    console.log('Found sections:', sections.map(s => s.id))
-
     if (sections.length === 0) {
-      console.error('No sections found!')
       return
     }
 
@@ -23,8 +20,6 @@ export const useScrollNavigation = () => {
       const windowHeight = window.innerHeight
       const scrollTop = window.scrollY
       let newActiveSection = 'home'
-      
-      console.log('Current scroll position:', scrollTop)
       
       // Simple approach: find the section that's most visible
       let maxVisibleHeight = 0
@@ -36,13 +31,6 @@ export const useScrollNavigation = () => {
           Math.min(rect.bottom, windowHeight) - Math.max(rect.top, 0)
         )
         
-        console.log(`Section ${id}:`, {
-          top: Math.round(rect.top),
-          bottom: Math.round(rect.bottom),
-          visibleHeight: Math.round(visibleHeight),
-          percentage: Math.round((visibleHeight / windowHeight) * 100) + '%'
-        })
-        
         // Select the section with the most visible content
         if (visibleHeight > maxVisibleHeight) {
           maxVisibleHeight = visibleHeight
@@ -53,16 +41,13 @@ export const useScrollNavigation = () => {
       // Only change if there's significant visible content (at least 30% of viewport)
       if (maxVisibleHeight > windowHeight * 0.3) {
         newActiveSection = selectedSection
-        console.log(`Selected ${selectedSection} with ${Math.round(maxVisibleHeight)}px visible`)
       } else if (scrollTop < 100) {
         newActiveSection = 'home'
-        console.log('Near top, showing home')
       }
       
       if (newActiveSection !== activeSectionRef.current) {
         activeSectionRef.current = newActiveSection
         setActiveSection(newActiveSection)
-        console.log('Active section changed to:', newActiveSection)
       }
     }
 
