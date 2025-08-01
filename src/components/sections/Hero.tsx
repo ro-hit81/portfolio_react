@@ -2,7 +2,7 @@
 
 import React from 'react'
 import { motion } from 'framer-motion'
-import { ArrowDown, Sparkles, Satellite, Brain, Globe, Cpu, Database, ChevronRight, Download } from 'lucide-react'
+import { ArrowDown, Sparkles, Satellite, Brain, ChevronRight, Download } from 'lucide-react'
 
 const Hero = () => {
   const stats = [
@@ -84,7 +84,7 @@ const Hero = () => {
             </motion.a>
 
             <motion.a
-              href="/resume.pdf"
+              href="/docs/resume.pdf"
               target="_blank"
               whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.95 }}

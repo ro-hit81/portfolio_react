@@ -189,7 +189,7 @@
 
 .certificationsGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   gap: 1.5rem;
 }
 
@@ -202,6 +202,9 @@
   transition: all 0.3s ease;
   position: relative;
   overflow: hidden;
+  height: 140px;
+  display: flex;
+  flex-direction: column;
 }
 
 .certificationCard::before {
@@ -223,7 +226,8 @@
   display: flex;
   align-items: flex-start;
   gap: 1rem;
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
+  flex: 1;
 }
 
 .certificationIcon {
@@ -240,25 +244,65 @@
 
 .certificationInfo {
   flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .certificationName {
   font-weight: bold;
   color: #111827;
-  font-size: 1rem;
+  font-size: 0.95rem;
   margin-bottom: 0.25rem;
+  line-height: 1.3;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 .certificationIssuer {
   color: #6b7280;
-  font-size: 0.875rem;
+  font-size: 0.8rem;
   font-weight: 500;
+  margin-bottom: 0.25rem;
+  line-height: 1.2;
 }
 
 .certificationDate {
   color: #9ca3af;
-  font-size: 0.75rem;
-  margin-top: 0.5rem;
+  font-size: 0.7rem;
+  margin-top: auto;
+  line-height: 1.2;
+}
+
+/* Certification Link Styles */
+.certificationLink {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+.certificationCard.clickable {
+  cursor: pointer;
+}
+
+.certificationCard.clickable:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.15);
+  border-color: #3b82f6;
+}
+
+.linkIcon {
+  flex-shrink: 0;
+  color: #6b7280;
+  transition: color 0.3s ease;
+}
+
+.certificationCard.clickable:hover .linkIcon {
+  color: #3b82f6;
 }
 
 .toolsSection {
@@ -277,8 +321,9 @@
 
 .toolsGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  grid-template-columns: repeat(auto-fill, 140px);
   gap: 1rem;
+  justify-content: center;
 }
 
 .toolCard {
@@ -289,6 +334,12 @@
   text-align: center;
   transition: all 0.3s ease;
   cursor: pointer;
+  width: 140px;
+  height: 140px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .toolCard:hover {
@@ -330,6 +381,18 @@
   color: #eab308;
 }
 
+.toolIcon.green {
+  color: #16a34a;
+}
+
+.toolIcon.purple {
+  color: #9333ea;
+}
+
+.toolIcon.black {
+  color: #374151;
+}
+
 .toolCard:hover .toolIcon {
   color: #3b82f6;
 }
@@ -338,4 +401,37 @@
   font-size: 0.875rem;
   font-weight: 500;
   color: #374151;
+}
+
+/* Show More Button Styles */
+.showMoreContainer {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.showMoreButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-weight: 500;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+}
+
+.showMoreButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(59, 130, 246, 0.4);
+  background: linear-gradient(135deg, #2563eb, #7c3aed);
+}
+
+.showMoreButton:active {
+  transform: translateY(0);
 }

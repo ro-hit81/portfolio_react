@@ -937,7 +937,7 @@
 }
 
 /* Custom marker animations */
-:global(.marker-appear) {
+.markerAnimations :global(.marker-appear) {
   animation: markerAppear 0.8s ease-out forwards;
 }
 
@@ -957,7 +957,7 @@
 }
 
 /* Airplane animation */
-:global(.airplane-icon) {
+.markerAnimations :global(.airplane-icon) {
   animation: airplaneFly 0.5s ease-in-out infinite alternate;
   z-index: 1000 !important;
 }
@@ -972,23 +972,23 @@
 }
 
 /* Trail line fade effect */
-:global(.leaflet-interactive) {
+.leafletMap :global(.leaflet-interactive) {
   transition: opacity 0.3s ease;
 }
 
 /* Enhanced popup styling */
-:global(.leaflet-popup-content-wrapper) {
+.leafletMap :global(.leaflet-popup-content-wrapper) {
   border-radius: 12px !important;
   padding: 0 !important;
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2) !important;
 }
 
-:global(.leaflet-popup-content) {
+.leafletMap :global(.leaflet-popup-content) {
   margin: 12px !important;
   line-height: 1.4 !important;
 }
 
-:global(.leaflet-popup-tip) {
+.leafletMap :global(.leaflet-popup-tip) {
   background: white !important;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1) !important;
 }

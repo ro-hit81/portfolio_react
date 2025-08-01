@@ -1,10 +1,18 @@
 "use client"
 
 import React from 'react'
-import Link from 'next/link'
-import { CheckCircle, Award, Calendar, MapPin } from 'lucide-react'
-import WorldMapJourney from './LeafletWorldMap'
+import { CheckCircle, Award } from 'lucide-react'
+import dynamic from 'next/dynamic'
 import styles from '../../styles/components/About.module.css'
+
+// Dynamically load the world map component
+const WorldMapJourney = dynamic(
+  () => import('./LeafletWorldMap'),
+  { 
+    ssr: false,
+    loading: () => <div className="text-center py-8">Loading interactive map...</div>
+  }
+)
 
 const About = () => {
   const highlights = [
@@ -23,24 +31,6 @@ const About = () => {
     "Geospatial Analytics",
     "High Performance Computing (HPC) & Multi-GPU Cluster Environments",
     "Cloud Platforms (Google Earth Engine, AWS EMR)"
-  ]
-
-  const timeline = [
-    {
-      year: "2023 - Present",
-      title: "Senior EO & AI Specialist",
-      description: "Leading satellite data analysis projects and developing AI solutions for environmental monitoring and climate research."
-    },
-    {
-      year: "2021 - 2023", 
-      title: "Remote Sensing Analyst",
-      description: "Specialized in processing and analyzing satellite imagery for land use monitoring and change detection studies."
-    },
-    {
-      year: "2019 - 2021",
-      title: "Research Assistant",
-      description: "Conducted research on machine learning applications in Earth observation and published multiple papers."
-    }
   ]
 
   return (

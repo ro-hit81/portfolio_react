@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect, useCallback, useMemo } from 'react'
 
 interface ScrollState {
   activeSection: string
@@ -17,7 +17,7 @@ export const useAdvancedScroll = () => {
 
   const [fadeOpacity, setFadeOpacity] = useState({ top: 0, bottom: 0 })
 
-  const sections = ['home', 'about', 'skills', 'projects', 'awards', 'contact']
+  const sections = useMemo(() => ['home', 'about', 'skills', 'projects', 'awards', 'contact'], [])
 
   // Throttled scroll handler
   const handleScroll = useCallback(() => {
@@ -37,6 +37,7 @@ export const useAdvancedScroll = () => {
     // Improved active section detection for scroll snap
     let newActiveSection = 'home'
     const navHeight = 80
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const scrollPosition = scrollY + navHeight + 50 // Account for navigation height
 
     // Find which section is most visible in the viewport
@@ -89,7 +90,7 @@ export const useAdvancedScroll = () => {
       ...prev,
       activeSection: newActiveSection
     }))
-  }, [])
+  }, [sections])
 
   // Detect scroll direction and handle snap behavior
   useEffect(() => {
@@ -133,6 +134,7 @@ export const useAdvancedScroll = () => {
     }
 
     // Handle wheel events for better scroll snapping
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const onWheel = (e: WheelEvent) => {
       // Let CSS scroll-snap handle the snapping behavior
       // This just updates our state

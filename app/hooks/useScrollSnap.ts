@@ -20,6 +20,7 @@ export const useScrollSnap = (onSectionChange?: (sectionId: string) => void) => 
         
         sections.forEach((section, index) => {
           const rect = section.getBoundingClientRect()
+          // eslint-disable-next-line @typescript-eslint/no-unused-vars
           const sectionTop = rect.top + scrollTop
           const distance = Math.abs(rect.top)
           

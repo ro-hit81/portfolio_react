@@ -9,6 +9,7 @@ export const useActiveSection = () => {
     const updateActiveSection = () => {
       const sections = document.querySelectorAll('section[id]')
       const windowHeight = window.innerHeight
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const scrollY = window.scrollY
       
       let currentSection = 'home'

@@ -20,6 +20,7 @@ interface JourneyEvent {
 // Define Leaflet types
 declare global {
   interface Window {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     L: any;
   }
 }
@@ -27,11 +28,19 @@ declare global {
 const WorldMapJourney = () => {
   const [selectedEvent, setSelectedEvent] = useState<JourneyEvent | null>(null)
   const [animationPhase, setAnimationPhase] = useState(0)
+  const [currentPathIndex, setCurrentPathIndex] = useState(0)
+  const [airplanePosition, setAirplanePosition] = useState({ x: 0, y: 0, angle: 0, visible: false })
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [leafletLoaded, setLeafletLoaded] = useState(false)
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const mapRef = useRef<HTMLDivElement>(null)
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars
   const mapInstanceRef = useRef<any>(null)
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars
   const markersRef = useRef<any[]>([])
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars
   const polylinesRef = useRef<any[]>([])
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars
   const airplaneMarkerRef = useRef<any>(null)
 
   // Journey data with geographical locations (sorted chronologically)
@@ -158,6 +167,7 @@ const WorldMapJourney = () => {
 
   // Get icon component based on string
   const getIcon = (iconName: string) => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const iconMap: { [key: string]: any } = {
       book: Book,
       work: MapPin,
@@ -206,64 +216,65 @@ const WorldMapJourney = () => {
 
   // Animate journey points
   useEffect(() => {
+    if (animationPhase >= journeyEvents.length) {
+      return // Stop animation when all events are shown
+    }
+
     const timer = setTimeout(() => {
-      setAnimationPhase(prev => {
-        if (prev < journeyEvents.length) {
-          return prev + 1
-        }
-        return prev
-      })
-    }, 1000)
+      setAnimationPhase(prev => prev + 1)
+    }, 2000) // 2 seconds between each event
 
     return () => clearTimeout(timer)
-  }, [animationPhase])
+  }, [animationPhase]) // Only depend on animationPhase
 
   // Animate airplane along paths
   useEffect(() => {
-    if (animationPhase > 1 && currentPathIndex < travelPaths.length - 1) {
-      const nextPathIndex = currentPathIndex + 1
-      const path = travelPaths[nextPathIndex]
-      
-      if (path) {
-        const startTime = Date.now()
-        const duration = 2000 // 2 seconds per flight
-        
-        const animateAirplane = () => {
-          const elapsed = Date.now() - startTime
-          const progress = Math.min(elapsed / duration, 1)
-          
-          // Easing function for smooth animation
-          const easeInOut = (t: number) => t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t
-          const easedProgress = easeInOut(progress)
-          
-          const x = path.from.x + (path.to.x - path.from.x) * easedProgress
-          const y = path.from.y + (path.to.y - path.from.y) * easedProgress
-          
-          // Calculate angle for airplane rotation
-          const angle = Math.atan2(path.to.y - path.from.y, path.to.x - path.from.x) * 180 / Math.PI
-          
-          setAirplanePosition({
-            x,
-            y,
-            angle,
-            visible: true
-          })
-          
-          if (progress < 1) {
-            requestAnimationFrame(animateAirplane)
-          } else {
-            setCurrentPathIndex(nextPathIndex)
-            // Hide airplane briefly before next flight
-            setTimeout(() => {
-              setAirplanePosition(prev => ({ ...prev, visible: false }))
-            }, 500)
-          }
-        }
-        
-        animateAirplane()
-      }
+    if (animationPhase <= 1 || currentPathIndex >= travelPaths.length - 1) {
+      return // No animation needed
     }
-  }, [animationPhase, currentPathIndex, travelPaths])
+
+    const nextPathIndex = currentPathIndex + 1
+    const path = travelPaths[nextPathIndex]
+    
+    if (path) {
+      const startTime = Date.now()
+      const duration = 2000 // 2 seconds per flight
+      
+      const animateAirplane = () => {
+        const elapsed = Date.now() - startTime
+        const progress = Math.min(elapsed / duration, 1)
+        
+        // Easing function for smooth animation
+        const easeInOut = (t: number) => t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t
+        const easedProgress = easeInOut(progress)
+        
+        const x = path.from.x + (path.to.x - path.from.x) * easedProgress
+        const y = path.from.y + (path.to.y - path.from.y) * easedProgress
+        
+        // Calculate angle for airplane rotation
+        const angle = Math.atan2(path.to.y - path.from.y, path.to.x - path.from.x) * 180 / Math.PI
+        
+        setAirplanePosition({
+          x,
+          y,
+          angle,
+          visible: true
+        })
+        
+        if (progress < 1) {
+          requestAnimationFrame(animateAirplane)
+        } else {
+          setCurrentPathIndex(nextPathIndex)
+          // Hide airplane briefly before next flight
+          setTimeout(() => {
+            setAirplanePosition(prev => ({ ...prev, visible: false }))
+          }, 500)
+        }
+      }
+      
+      animateAirplane()
+    }
+  }, [animationPhase]) // Only depend on animationPhase
 
   // Get visible events based on animation phase
   const visibleEvents = journeyEvents.slice(0, animationPhase).map(event => {

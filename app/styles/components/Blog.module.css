@@ -294,3 +294,84 @@
     font-size: 0.875rem;
   }
 }
+
+/* Coming Soon Styles */
+.comingSoonContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 400px;
+}
+
+.comingSoonCard {
+  background: white;
+  padding: 3rem 2rem;
+  border-radius: 20px;
+  text-align: center;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e2e8f0;
+  max-width: 600px;
+  width: 100%;
+}
+
+.comingSoonIcon {
+  font-size: 4rem;
+  margin-bottom: 1.5rem;
+}
+
+.comingSoonTitle {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #111827;
+  margin-bottom: 1rem;
+  background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.comingSoonDescription {
+  font-size: 1.125rem;
+  color: #6b7280;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+}
+
+.comingSoonTopics {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.topic {
+  padding: 0.5rem 1rem;
+  background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+  color: white;
+  border-radius: 20px;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.titleIcon {
+  margin-right: 0.5rem;
+}
+
+@media (max-width: 768px) {
+  .comingSoonCard {
+    padding: 2rem 1.5rem;
+  }
+  
+  .comingSoonTitle {
+    font-size: 1.5rem;
+  }
+  
+  .comingSoonDescription {
+    font-size: 1rem;
+  }
+  
+  .topic {
+    font-size: 0.8rem;
+    padding: 0.4rem 0.8rem;
+  }
+}

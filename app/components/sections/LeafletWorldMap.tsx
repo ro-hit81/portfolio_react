@@ -1,7 +1,7 @@
 "use client"
 
-import React, { useEffect, useState, useCallback, useRef } from 'react'
-import { MapPin, Award, Book, School, Trophy, Laptop, FileText } from 'lucide-react'
+import React, { useEffect, useState, useCallback, useRef, useMemo } from 'react'
+import { MapPin, Award, Book, School, Trophy, Laptop } from 'lucide-react'
 import styles from './WorldMapJourney.module.css'
 
 interface JourneyEvent {
@@ -20,29 +20,40 @@ interface JourneyEvent {
 // Define Leaflet types
 declare global {
   interface Window {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     L: any;
   }
 }
 
 const WorldMapJourney = () => {
   const [selectedEvent, setSelectedEvent] = useState<JourneyEvent | null>(null)
-  const [animationPhase, setAnimationPhase] = useState(0)
+  const [currentStep, setCurrentStep] = useState(0)
   const [leafletLoaded, setLeafletLoaded] = useState(false)
   const [isAnimating, setIsAnimating] = useState(false)
   const [airplanePosition, setAirplanePosition] = useState<{lat: number, lng: number} | null>(null)
-  const [traveledPlaces, setTraveledPlaces] = useState<JourneyEvent[]>([])
+  const [visitedPlaces, setVisitedPlaces] = useState<JourneyEvent[]>([])
   const [animationCompleted, setAnimationCompleted] = useState(false)
+  const [animationPhase, setAnimationPhase] = useState(0)
+  const [traveledPlaces, setTraveledPlaces] = useState<JourneyEvent[]>([])
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [manIconMarker, setManIconMarker] = useState<any>(null)
+  
   const mapRef = useRef<HTMLDivElement>(null)
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const mapInstanceRef = useRef<any>(null)
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const markersRef = useRef<any[]>([])
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const polylinesRef = useRef<any[]>([])
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const airplaneMarkerRef = useRef<any>(null)
-  const animationRef = useRef<any>(null)
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const restartButtonRef = useRef<any>(null)
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const animationRef = useRef<any>(null)
 
   // Journey data with geographical locations (sorted chronologically)
-  const journeyEvents: JourneyEvent[] = [
+  const journeyEvents: JourneyEvent[] = useMemo(() => [
     {
       id: '1',
       lat: 28.2096, lng: 83.9856, // Pokhara, Nepal
@@ -153,7 +164,7 @@ const WorldMapJourney = () => {
       category: 'education',
       size: 1.2
     }
-  ]
+  ], [])
 
   // Load Leaflet dynamically
   useEffect(() => {
@@ -231,10 +242,11 @@ const WorldMapJourney = () => {
       interactive: false
     }).addTo(map)
 
-    // Start animation after map is ready
+    // Start animation after map is ready with better initialization
     setTimeout(() => {
+      console.log('Starting initial animation phase')
       setAnimationPhase(1)
-    }, 1000)
+    }, 1500) // Increased delay to ensure map is fully loaded
 
     return () => {
       if (mapInstanceRef.current) {
@@ -290,6 +302,7 @@ const WorldMapJourney = () => {
   }
 
   // Color mapping for categories
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const getCategoryColor = (category: string) => {
     const colorMap: { [key: string]: string } = {
       education: '#2196f3',
@@ -302,7 +315,7 @@ const WorldMapJourney = () => {
   }
 
   // Animate airplane between two points with dynamic trail and camera following
-  const animateAirplane = (fromEvent: JourneyEvent, toEvent: JourneyEvent, duration: number = 4000) => {
+  const animateAirplane = useCallback((fromEvent: JourneyEvent, toEvent: JourneyEvent, duration: number = 4000) => {
     if (!mapInstanceRef.current) return Promise.resolve()
 
     return new Promise<void>((resolve) => {
@@ -368,6 +381,7 @@ const WorldMapJourney = () => {
       }
 
       // Create dynamic trail line that follows the airplane
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       let dynamicTrailLine: any = null
 
       const animate = () => {
@@ -463,10 +477,10 @@ const WorldMapJourney = () => {
       
       animate()
     })
-  }
+  }, [])
 
   // Add restart button to the map
-  const addRestartButton = () => {
+  const addRestartButton = useCallback(() => {
     if (!mapInstanceRef.current || restartButtonRef.current) return
     
     const restartButton = window.L.control({ position: 'topright' })
@@ -492,6 +506,7 @@ const WorldMapJourney = () => {
         </button>
       `
       
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       div.onclick = (e: any) => {
         e.stopPropagation()
         restartAnimation()
@@ -502,10 +517,11 @@ const WorldMapJourney = () => {
     
     restartButton.addTo(mapInstanceRef.current)
     restartButtonRef.current = restartButton
-  }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []) // restartAnimation will be bound in the onclick closure
 
   // Smooth camera movement to focus on current location
-  const panAndZoomToLocation = (event: JourneyEvent, zoom: number = 6) => {
+  const panAndZoomToLocation = useCallback((event: JourneyEvent, zoom: number = 6) => {
     if (!mapInstanceRef.current) return Promise.resolve()
     
     return new Promise<void>((resolve) => {
@@ -518,19 +534,26 @@ const WorldMapJourney = () => {
       
       setTimeout(resolve, 1500)
     })
-  }
+  }, [])
 
-  // Main animation sequence
+  // Main animation sequence with debugging
   useEffect(() => {
     if (!mapInstanceRef.current || animationPhase === 0 || isAnimating || animationCompleted) return
 
+    console.log(`Starting animation for phase ${animationPhase}`)
+
     const runAnimation = async () => {
-      if (animationPhase > journeyEvents.length) return
+      if (animationPhase > journeyEvents.length) {
+        console.log('Animation completed - all events processed')
+        return
+      }
       
       setIsAnimating(true)
       const map = mapInstanceRef.current
       const currentEvent = journeyEvents[animationPhase - 1]
       const previousEvent = animationPhase > 1 ? journeyEvents[animationPhase - 2] : null
+
+      console.log(`Processing event: ${currentEvent.title}`)
 
       try {
         // If this is not the first event, animate airplane travel with camera following
@@ -621,28 +644,41 @@ const WorldMapJourney = () => {
       } catch (error) {
         console.error('Animation error:', error)
       } finally {
+        console.log(`Finished processing phase ${animationPhase}, setting isAnimating to false`)
         setIsAnimating(false)
       }
     }
 
     runAnimation()
-  }, [animationPhase, animationCompleted])
+  }, [animationPhase, animationCompleted, addRestartButton, animateAirplane, journeyEvents, panAndZoomToLocation]) // Removed isAnimating dependency
 
-  // Progress the animation
+  // Progress the animation with better error handling
   useEffect(() => {
-    if (isAnimating || animationPhase === 0 || animationCompleted) return
+    // Only progress if we're not currently animating and haven't completed
+    if (isAnimating || animationPhase === 0 || animationCompleted) {
+      console.log(`Skipping progression: isAnimating=${isAnimating}, phase=${animationPhase}, completed=${animationCompleted}`)
+      return
+    }
+
+    console.log(`Animation phase: ${animationPhase}, Total events: ${journeyEvents.length}`)
+
+    // If we've reached the end, mark as completed
+    if (animationPhase >= journeyEvents.length) {
+      console.log('Animation completed - marking as finished')
+      setAnimationCompleted(true)
+      return
+    }
 
     const timer = setTimeout(() => {
       setAnimationPhase(prev => {
-        if (prev < journeyEvents.length) {
-          return prev + 1
-        }
-        return prev
+        const nextPhase = prev + 1
+        console.log(`Moving from phase ${prev} to ${nextPhase}`)
+        return nextPhase
       })
-    }, 200) // Faster progression between steps
+    }, 500) // Increased delay to ensure previous animation completes
 
     return () => clearTimeout(timer)
-  }, [animationPhase, isAnimating, animationCompleted])
+  }, [animationPhase, isAnimating, animationCompleted, journeyEvents.length])
 
   // Cleanup animation on unmount
   useEffect(() => {
@@ -653,6 +689,7 @@ const WorldMapJourney = () => {
     }
   }, [])
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const handleEventClick = useCallback((event: JourneyEvent) => {
     setSelectedEvent(event)
   }, [])
