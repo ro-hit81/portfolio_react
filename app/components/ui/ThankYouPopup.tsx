@@ -1,6 +1,7 @@
 "use client"
 
 import React, { useEffect, useState } from 'react'
+import { createPortal } from 'react-dom'
 import { CheckCircle, X } from 'lucide-react'
 import styles from './ThankYouPopup.module.css'
 
@@ -11,6 +12,12 @@ interface ThankYouPopupProps {
 
 const ThankYouPopup: React.FC<ThankYouPopupProps> = ({ isVisible, onClose }) => {
   const [showContent, setShowContent] = useState(false)
+  const [mounted, setMounted] = useState(false)
+
+  useEffect(() => {
+    setMounted(true)
+    return () => setMounted(false)
+  }, [])
 
   useEffect(() => {
     if (isVisible) {
@@ -28,13 +35,22 @@ const ThankYouPopup: React.FC<ThankYouPopupProps> = ({ isVisible, onClose }) => 
       const autoCloseTimer = setTimeout(() => {
         onClose()
       }, 5000)
-      return () => clearTimeout(autoCloseTimer)
+      
+      // Prevent body scroll when popup is open
+      document.body.style.overflow = 'hidden'
+      
+      return () => {
+        clearTimeout(autoCloseTimer)
+        document.body.style.overflow = 'unset'
+      }
+    } else {
+      document.body.style.overflow = 'unset'
     }
   }, [isVisible, onClose])
 
-  if (!isVisible) return null
+  if (!mounted || !isVisible) return null
 
-  return (
+  const popupContent = (
     <div className={styles.overlay}>
       <div className={styles.popup}>
         <button className={styles.closeButton} onClick={onClose}>
@@ -72,6 +88,9 @@ const ThankYouPopup: React.FC<ThankYouPopupProps> = ({ isVisible, onClose }) => 
       </div>
     </div>
   )
+
+  // Use portal to render at the end of body, avoiding any parent container constraints
+  return createPortal(popupContent, document.body)
 }
 
 export default ThankYouPopup

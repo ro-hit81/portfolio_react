@@ -39,7 +39,7 @@ const Hero = () => {
           {/* Profile Picture Section - Between name and subtitle */}
           <div className={styles.profileSection}>
             <img 
-              src="/rohit.jpg" 
+              src="/rohit.jpeg" 
               alt="Rohit Khati Profile" 
               className={styles.profilePicture}
             />
