@@ -1,211 +1,127 @@
-# 🛰️ Rohit Khati - Modern Portfolio
+# Rohit Khati Portfolio
 
-An interactive portfolio showcasing Earth Observation (EO) and AI expertise.
+Personal portfolio site for Earth Observation, remote sensing, and AI work.
 
 ![Next.js](https://img.shields.io/badge/Next.js-15.4.4-black?style=for-the-badge&logo=next.js)
-![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue?style=for-the-badge&logo=typescript)
-![TailwindCSS](https://img.shields.io/badge/Tailwind-3.4-38B2AC?style=for-the-badge&logo=tailwind-css)
+![TypeScript](https://img.shields.io/badge/TypeScript-5.x-blue?style=for-the-badge&logo=typescript)
+![TailwindCSS](https://img.shields.io/badge/TailwindCSS-4.x-38B2AC?style=for-the-badge&logo=tailwind-css)
 ![Deployed](https://img.shields.io/badge/Deployed-Live-success?style=for-the-badge)
 
+## Getting Started
 
-## 🚀 Getting Started
+### Requirements
+- Node.js 18+
+- npm
 
-### Prerequisites
-- Node.js 18+ 
-- npm or yarn package manager
-
-### Installation
-
-1. **Clone the repository**
-   ```bash
-   git clone https://github.com/ro-hit81/portfolio_react.git
-   cd portfolio_react
-   ```
-
-2. **Install dependencies**
-   ```bash
-   npm install
-   # or
-   yarn install
-   ```
-
-3. **Run development server**
-   ```bash
-   npm run dev
-   # or
-   yarn dev
-   ```
-
-4. **Open in browser**
-   ```
-   http://localhost:3000
-   ```
-
-### Building for Production
-
+### Install and Run
 ```bash
-# Build the application
+git clone https://github.com/ro-hit81/portfolio_react.git
+cd portfolio_react
+npm install
+npm run dev
+```
+
+Open `http://localhost:3000` in your browser.
+
+### Build
+```bash
 npm run build
-
-# Start production server
 npm run start
-
-# Export static files
-npm run export
 ```
 
-## 📁 Project Structure
+## Project Structure
 
-```
+This repository currently contains two app trees:
+- `app/` is the active Next.js App Router implementation used by the site.
+- `src/` contains a smaller mirrored set of components and shared code.
+
+```text
 portfolio_react/
 ├── app/
+│   ├── layout.tsx
+│   ├── page.tsx
+│   ├── academic/
+│   │   └── page.tsx
 │   ├── components/
 │   │   ├── layout/
-│   │   │   └── Navigation.tsx         # Smart navigation with sliding effects
+│   │   │   └── Navigation.tsx
+│   │   ├── effects/
+│   │   │   └── ScrollFadeOverlay.tsx
 │   │   ├── sections/
-│   │   │   ├── Hero.tsx              # Landing section with animations
-│   │   │   ├── About.tsx             # Personal introduction
-│   │   │   ├── Skills.tsx            # Technical expertise showcase
-│   │   │   ├── Blog.tsx              # Blog/articles section
-│   │   │   ├── Projects.tsx          # Portfolio projects
-│   │   │   ├── Awards.tsx            # Achievements and recognition
-│   │   │   └── Contact.tsx           # Contact form with validation
-│   │   └── SatelliteBackground.tsx   # Animated satellite constellation
-│   ├── hooks/
-│   │   └── useAdvancedScroll.ts      # Advanced scroll detection
-│   ├── styles/
-│   │   └── components/               # CSS Modules for each component
-│   ├── data/
-│   │   ├── projects.ts               # Project data
-│   │   ├── skills.ts                 # Skills and technologies
-│   │   └── awards.ts                 # Achievement data
-│   ├── globals.css                   # Global styles and animations
-│   ├── layout.tsx                    # Root layout with metadata
-│   └── page.tsx                      # Main page composition
+│   │   │   ├── Hero.tsx
+│   │   │   ├── About.tsx
+│   │   │   ├── Skills.tsx
+│   │   │   ├── Blog.tsx
+│   │   │   ├── Projects.tsx
+│   │   │   ├── Publications.tsx
+│   │   │   ├── Awards.tsx
+│   │   │   ├── Contact.tsx
+│   │   │   ├── WorldMapJourney.tsx
+│   │   │   ├── NewWorldMapJourney.tsx
+│   │   │   └── LeafletWorldMap.tsx
+│   │   └── ui/
+│   │       └── ThankYouPopup.tsx
+│   └── styles/components/
+│       ├── Hero.module.css
+│       ├── Navigation.module.css
+│       ├── About.module.css
+│       ├── Skills.module.css
+│       ├── Blog.module.css
+│       ├── Projects.module.css
+│       ├── Publications.module.css
+│       ├── Awards.module.css
+│       └── Contact.module.css
 ├── public/
-│   ├── images/                       # Optimized project images
-│   └── favicon.ico                   # Site icon
-├── next.config.ts                    # Next.js configuration
-└── tailwind.config.ts               # Tailwind CSS configuration
+│   ├── rohit.jpeg
+│   ├── favicon.svg
+│   └── docs/
+├── next.config.ts
+├── tailwind.config.ts
+└── tsconfig.json
 ```
 
-## 🎯 Key Components
+## Key Sections
 
-### Satellite Background Animation
-- **6 Satellite Pairs**: Different colors, sizes, and speeds
-- **Crossing Trajectories**: Mathematical sinusoidal paths with intersection points
-- **Performance Optimized**: Smooth 60fps animations with CSS transforms
-- **Responsive Behavior**: Adapted complexity for mobile devices
+- Hero: personal introduction, stats, resume link, and academic background CTA.
+- Navigation: sticky section navigation with active section highlighting and mobile menu.
+- About: overview of background and focus areas.
+- Skills: technical stack and Earth Observation capabilities.
+- Blog: writing and knowledge-sharing section.
+- Projects: selected portfolio work and case studies.
+- Publications: research papers, thesis, and academic outputs.
+- Awards: recognitions and achievements.
+- Contact: contact form and social links.
+- Academic: dedicated page for education and academic background.
 
-### Navigation System
-- **Smart Active Detection**: Automatically highlights current section
-- **Smooth Scrolling**: Enhanced scroll behavior with momentum
-- **Visual Feedback**: Gradient underlines with sliding animations
-- **Mobile Responsive**: Collapsible menu for smaller screens
+## Notable UI Pieces
 
-### Contact Integration
-- **Web3Forms**: Secure form submission without backend
-- **Validation**: Client-side validation with user feedback
-- **Success Animation**: Beautiful confirmation animations
-- **Anti-spam**: Built-in protection and validation
+- ScrollFadeOverlay: soft scroll-based visual layering across sections.
+- Hero module styles: animated intro, profile card, and CTA layout.
+- Publications module: research cards with DOI and paper links.
+- World map journey components: alternative map-style storytelling sections.
 
-## 🛠️ Technologies Used
+## Tech Stack
 
-### Frontend
-- **Next.js 15.4.4**: React framework with App Router
-- **TypeScript**: Type-safe development
-- **CSS Modules**: Component-scoped styling
-- **Lucide React**: Beautiful, customizable icons
+- Next.js 15 with the App Router
+- React 19
+- TypeScript
+- CSS Modules for component styling
+- Lucide React icons
 
-### Styling & Animation
-- **CSS Custom Properties**: Dynamic theming capabilities
-- **CSS Transforms**: Hardware-accelerated animations
-- **Backdrop Filters**: Modern glass morphism effects
-- **Responsive Design**: Mobile-first approach
+## Customization Notes
 
-### Development Tools
-- **ESLint**: Code quality and consistency
-- **Prettier**: Code formatting
-- **Git Hooks**: Pre-commit quality checks
+- Update personal content in the section components under `app/components/sections/`.
+- Update global metadata in `app/layout.tsx`.
+- Update page composition in `app/page.tsx`.
 
-## 🌟 Customization
+## License
 
-### Adding New Projects
-```typescript
-// app/data/projects.ts
-export const projects = [
-  {
-    title: "Your Project",
-    description: "Project description",
-    image: "/images/project.jpg",
-    technologies: ["Tech1", "Tech2"],
-    githubUrl: "https://github.com/...",
-    liveUrl: "https://...",
-    featured: true
-  }
-]
-```
+Open source under the MIT License.
 
-### Modifying Satellite Animation
-```css
-/* app/styles/components/SatelliteBackground.module.css */
-.satelliteIcon {
-  opacity: 0.25; /* Adjust transparency */
-}
+## Links
 
-/* Modify animation duration */
-.pair1A {
-  animation: pair1A 45s linear infinite;
-}
-```
+- Live site: https://www.rohit81.com.np/
+- GitHub: https://github.com/ro-hit81
+- LinkedIn: https://linkedin.com/in/rhtkht/
 
-### Updating Contact Form
-```typescript
-// Replace Web3Forms access key in Contact.tsx
-const accessKey = "YOUR_WEB3FORMS_KEY";
-```
-
-## 🚦 Performance Features
-
-- **Optimized Images**: Next.js Image component with lazy loading
-- **Code Splitting**: Automatic route-based code splitting
-- **CSS Optimization**: Purged unused styles in production
-- **Animation Performance**: GPU-accelerated transforms
-- **Lighthouse Score**: 95+ performance rating
-
-## 📱 Browser Support
-
-- **Chrome**: Latest 2 versions
-- **Firefox**: Latest 2 versions  
-- **Safari**: Latest 2 versions
-- **Edge**: Latest 2 versions
-- **Mobile**: iOS Safari, Chrome Mobile
-
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
-## 📄 License
-
-This project is open source and available under the [MIT License](LICENSE).
-
-## 👨‍💻 About the Developer
-
-**Rohit Khati** - Earth Observation & AI Expert
-- Specializing in satellite imagery analysis and machine learning
-- Passionate about remote sensing applications and geospatial technologies
-- Building innovative solutions for environmental monitoring and analysis
-
-## 🔗 Links
-
-- **Portfolio**: [Live Demo](https://www.rohit81.com.np/)
-- **GitHub**: [@ro-hit81](https://github.com/ro-hit81)
-- **LinkedIn**: [rhtkht](https://linkedin.com/in/rhtkht/)
-
----
-
-Built with ❤️ and ☕ by Rohit Khati | © 2025
+Built with ❤️ and ☕ by Rohit Khati
