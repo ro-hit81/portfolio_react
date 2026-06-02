@@ -1,6 +1,6 @@
 # 🛰️ Rohit Khati - Modern Portfolio
 
-A stunning, interactive portfolio showcasing Earth Observation (EO) and AI expertise with beautiful satellite animations and modern web technologies.
+An interactive portfolio showcasing Earth Observation (EO) and AI expertise.
 
 ![Next.js](https://img.shields.io/badge/Next.js-15.4.4-black?style=for-the-badge&logo=next.js)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue?style=for-the-badge&logo=typescript)
