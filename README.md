@@ -7,13 +7,6 @@ A stunning, interactive portfolio showcasing Earth Observation (EO) and AI exper
 ![TailwindCSS](https://img.shields.io/badge/Tailwind-3.4-38B2AC?style=for-the-badge&logo=tailwind-css)
 ![Deployed](https://img.shields.io/badge/Deployed-Live-success?style=for-the-badge)it Khati - Modern Portfolio
 
-A stunning, interactive portfolio showcasing Earth Observation (EO) and AI expertise with beautiful satellite animations and modern web technologies.
-
-![Next.js](https://img.shields.io/badge/Next.js-15.4.4-black?style=for-the-badge&logo=next.js)
-![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue?style=for-the-badge&logo=typescript)
-![TailwindCSS](https://img.shields.io/badge/Tailwind-3.4-38B2AC?style=for-the-badge&logo=tailwind-css)
-![Deployed](https://img.shields.io/badge/Deployed-Live-success?style=for-the-badge)
-
 
 ## 🚀 Getting Started
 
