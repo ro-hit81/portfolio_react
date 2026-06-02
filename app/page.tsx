@@ -6,6 +6,7 @@ import Hero from './components/sections/Hero'
 import Skills from './components/sections/Skills'
 import Blog from './components/sections/Blog'
 import Projects from './components/sections/Projects'
+import Publications from './components/sections/Publications'
 import Awards from './components/sections/Awards'
 import Contact from './components/sections/Contact'
 import dynamic from 'next/dynamic'
@@ -45,6 +46,9 @@ export default function Home() {
       </section>
       <section id="projects" className="section-fade-in">
         <Projects />
+      </section>
+      <section id="publications" className="section-fade-in">
+        <Publications />
       </section>
       <section id="awards" className="section-fade-in">
         <Awards />

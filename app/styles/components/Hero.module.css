@@ -9,6 +9,7 @@
   justify-content: center;
   overflow: hidden;
   background: linear-gradient(135deg, #f8fafc 0%, rgba(219, 234, 254, 0.3) 50%, rgba(233, 213, 255, 0.3) 100%);
+  padding: 2rem 1rem;
 }
 
 .backgroundElements {
@@ -71,20 +72,38 @@
   font-size: 3rem;
   font-weight: bold;
   margin-bottom: 1.5rem;
-  line-height: 1.1;
+  line-height: 1.2;
+  padding: 0.5rem 0;
 }
 
 @media (min-width: 768px) {
+  .hero {
+    padding: 2rem 1rem;
+  }
+  
+  .content {
+    padding: 0 1rem;
+  }
+  
+  .titleSection {
+    margin-bottom: 2rem;
+    padding-top: 0;
+  }
+  
   .mainTitle {
     font-size: 4.5rem;
+    line-height: 1.2;
+    padding: 0.5rem 0;
+    margin-bottom: 1.5rem;
   }
 }
 
 .gradientText {
-  background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+  background: linear-gradient(135deg, #8b5cf6, #3b82f6, #6366f1);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  font-weight: 700;
 }
 
 /* Profile picture section - within title section */
@@ -317,7 +336,7 @@
   .hero {
     min-height: 100vh;
     padding: 2rem 1rem 1rem 1rem;
-    padding-top: 120px; /* Add extra top padding to ensure name is visible */
+    padding-top: 120px; /* Increased padding even more to ensure name is fully visible */
   }
   
   .content {
@@ -327,13 +346,14 @@
   
   .titleSection {
     margin-bottom: 2rem;
-    padding-top: 1rem; /* Additional padding for title section */
+    padding-top: 1rem; /* Increased padding for title section */
   }
   
   .mainTitle {
     font-size: 3rem;
     line-height: 1.2;
     margin-bottom: 1rem;
+    padding: 1rem 0;
   }
   
   .subtitle {
@@ -433,11 +453,13 @@
   
   .titleSection {
     margin-bottom: 2rem;
-    padding-top: 1rem;
+    padding-top: 2rem; /* Increased padding */
   }
   
   .mainTitle {
     font-size: 2.5rem;
+    padding: 1rem 0;
+    line-height: 1.4;
   }
   
   .subtitle {

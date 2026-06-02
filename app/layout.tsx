@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import SatelliteBackground from "./components/SatelliteBackground";
 
 export const metadata: Metadata = {
   title: "Rohit Khati | Earth Observation & AI Specialist",
@@ -120,6 +119,19 @@ export default function RootLayout({
         {/* Facebook specific meta tags */}
         <meta property="fb:admins" content="rohitkhati" />
         
+        {/* Google Analytics */}
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-K9XT658DMB"></script>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'G-K9XT658DMB');
+            `
+          }}
+        />
+        
         {/* Schema.org structured data for social media */}
         <script
           type="application/ld+json"
@@ -155,7 +167,6 @@ export default function RootLayout({
         />
       </head>
       <body className="font-sans antialiased">
-        <SatelliteBackground />
         {children}
       </body>
     </html>

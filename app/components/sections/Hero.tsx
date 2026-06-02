@@ -49,7 +49,8 @@ const Hero = () => {
             Earth Observation & AI Specialist
           </h2>
           <p className={styles.description}>
-            Transforming satellite data into actionable insights through cutting-edge artificial intelligence 
+            Passionate about open source research and collaborative scientific advancements 
+            for humanitarian betterment and global welfare. Transforming satellite data into actionable insights through cutting-edge artificial intelligence 
             and machine learning techniques for environmental monitoring and climate research.
           </p>
         </div>

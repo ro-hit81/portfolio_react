@@ -57,9 +57,11 @@ const Hero = () => {
               transition={{ delay: 0.8, duration: 0.8 }}
               className="text-xl md:text-2xl text-slate-600 max-w-4xl mx-auto leading-relaxed"
             >
-              Transforming satellite data into actionable insights through cutting-edge{' '}
+              Passionate about open source research and collaborative scientific advancements 
+              for humanitarian betterment and global welfare. Transforming satellite data into actionable insights through cutting-edge{' '}
               <span className="gradient-text font-semibold">machine learning</span> and{' '}
-              <span className="gradient-text font-semibold">geospatial analysis</span>
+              <span className="gradient-text font-semibold">geospatial analysis</span>{' '}
+              for environmental monitoring and climate research.
             </motion.p>
           </motion.div>
 
